@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-
 import {
   Mail,
   Download,
   GraduationCap,
   Calendar,
+  Sun,
+  Moon,
 } from "lucide-react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -14,10 +15,7 @@ import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
 import About from "./components/About";
-
-// If you're using shadcn/ui in your project, you can replace these primitives
-// with the library components. For the canvas preview, Tailwind-based
-// primitives below keep everything zero-config.
+import Footer from "./components/Footer";
 
 const Container = ({ children, className = "" }) => (
   <div className={`mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>
@@ -37,18 +35,19 @@ const Button = ({ as:As = "button", className = "", children, ...props }) => (
   </As>
 );
 
-  // --- Data you can edit quickly ---
-  const PROFILE = {
-    name: "Zarni Tun",
-    role: "Final-year Software Engineering Student",
-    summary:
-      "Final-year Software Engineering student who loves building resilient microservices, AI-powered tools, and developer-friendly APIs. Comfortable with Spring Boot, Kafka, Eureka/Service Discovery, RabbitMQ, Docker, and CI/CD. Also ship clean, responsive UIs in React and Vue.",
-    location: "Chiang Rai, Thailand",
-    email: "zarnn872@gmail.com",
-    github: "https://github.com/zarn-chalamet",
-    linkedin: "https://www.linkedin.com/in/yourhandle/",
-    resumeUrl: "/resume.pdf", // public/resume.pdf
-  };
+// --- Data you can edit quickly ---
+const PROFILE = {
+  name: "Zarni Tun",
+  role: "Final-year Software Engineering Student",
+  summary:
+    "Final-year Software Engineering student who loves building resilient microservices, AI-powered tools, and developer-friendly APIs. Comfortable with Spring Boot, Kafka, Eureka/Service Discovery, RabbitMQ, Docker, and CI/CD. Also ship clean, responsive UIs in React and Vue.",
+  location: "Chiang Rai, Thailand",
+  email: "zarnn872@gmail.com",
+  github: "https://github.com/zarn-chalamet",
+  linkedin: "https://www.linkedin.com/in/yourhandle/",
+  resumeUrl: "/resume.pdf", // public/resume.pdf
+  initials: "ZT"
+};
 
 
 const PROJECTS = [
@@ -101,20 +100,45 @@ const TAGS = [
 ];
 
 export default function Portfolio() {
-  const [dark, setDark] = useState(true);
+  const [dark, setDark] = useState(() => {
+    // Check if user has a theme preference in localStorage
+    const savedTheme = localStorage.getItem('theme');
+    // If no saved preference, check system preference
+    if (savedTheme) return savedTheme === 'dark';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
   
+  // Toggle theme function
+  const toggleTheme = () => {
+    setDark(prevDark => {
+      const newDark = !prevDark;
+      // Save preference to localStorage
+      localStorage.setItem('theme', newDark ? 'dark' : 'light');
+      return newDark;
+    });
+  };
 
   useEffect(() => {
     const root = document.documentElement;
-    if (dark) root.classList.add("dark");
-    else root.classList.remove("dark");
+    if (dark) {
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
+    }
   }, [dark]);
 
+  // Add theme toggle to the Navbar props
+  const navbarProps = {
+    profile: PROFILE, 
+    dark, 
+    toggleTheme  // Changed from setDark to toggleTheme
+  };
+
   return (
-    <div className="min-h-screen bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+    <div className="min-h-screen bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 transition-colors duration-300">
       
       {/* Nav bar */}
-      <Navbar profile={PROFILE} dark={dark} setDark={setDark}/>
+      <Navbar {...navbarProps} />
 
       {/* Hero section */}
       <Hero profile={PROFILE}/>
@@ -137,9 +161,7 @@ export default function Portfolio() {
       {/* Contact */}
       <Contact profile={PROFILE}/>
 
-      <footer className="py-10 text-center text-xs text-neutral-500">
-        © {new Date().getFullYear()} {PROFILE.name}. Built with React + Tailwind.
-      </footer>
+      <Footer profile={PROFILE}/>
     </div>
   );
 }
