@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {
-  Mail,
-  Download,
-  GraduationCap,
-  Calendar,
-  Sun,
-  Moon,
-} from "lucide-react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
-import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
-import About from "./components/About";
 import Footer from "./components/Footer";
+import Introduction from "./components/Introduction";
+import { label } from "framer-motion/client";
 
 const Container = ({ children, className = "" }) => (
   <div className={`mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>
@@ -40,63 +32,22 @@ const PROFILE = {
   name: "Zarni Tun",
   role: "Final-year Software Engineering Student",
   summary:
-    "Final-year Software Engineering student who loves building resilient microservices, AI-powered tools, and developer-friendly APIs. Comfortable with Spring Boot, Kafka, Eureka/Service Discovery, RabbitMQ, Docker, and CI/CD. Also ship clean, responsive UIs in React and Vue.",
+    "Final-year Software Engineering student passionate about full-stack development, AI/ML, and creating intuitive digital solutions. Exploring microservices, cloud, and modern DevOps practices to expand my craft.",
   location: "Chiang Rai, Thailand",
   email: "zarnn872@gmail.com",
   github: "https://github.com/zarn-chalamet",
-  linkedin: "https://www.linkedin.com/in/yourhandle/",
+  linkedin: "https://www.linkedin.com/in/zarni-tun-3ab45b332",
   resumeUrl: "/resume.pdf", // public/resume.pdf
-  initials: "ZT"
+  initials: "ZT",
+  photo: "src/assets/ayl.jpg"
 };
-
-
-const PROJECTS = [
-  {
-    title: "Sports Complex Platform (Microservices)",
-    period: "2025",
-    blurb:
-      "A university sports complex platform split into auth, booking, payments, and notifications services. Central scoreboard, live updates, and PDPA‑aware design.",
-    tags: ["backend", "spring-boot", "microservices", "kafka", "eureka"],
-    links: {
-      repo: "https://github.com/yourhandle/sports-complex-platform",
-      live: "https://your-deploy-url.example",
-    },
-  },
-  {
-    title: "AR Interior Design App (APIs + Web)",
-    period: "2024",
-    blurb:
-      "RESTful APIs for session management, assets, and analytics. Frontend in React with WebGL viewer, role‑based access, and Stripe test integration.",
-    tags: ["backend", "react", "api", "docker"],
-    links: { repo: "https://github.com/yourhandle/ar-interior-platform" },
-  },
-  {
-    title: "Quiz Builder (Vue + Firebase + AI)",
-    period: "2024",
-    blurb:
-      "Vue SPA that ingests PDFs and generates quizzes. Rate‑limit aware AI calls, Cloud Functions for long‑running jobs.",
-    tags: ["frontend", "vue", "firebase"],
-    links: { repo: "https://github.com/yourhandle/quiz-builder" },
-  },
-  {
-    title: "Chat App (Spring + WebSocket)",
-    period: "2023",
-    blurb:
-      "STOMP WebSocket messaging with Kafka as a buffer, JWT auth, and media storage. Delivered responsive UI in React.",
-    tags: ["backend", "spring-boot", "kafka", "react"],
-    links: { repo: "https://github.com/yourhandle/chat-app" },
-  },
-];
 
 const TAGS = [
   { key: "all", label: "All" },
-  { key: "backend", label: "Backend" },
+  { key: "AI", label: "Ai"},
   { key: "spring-boot", label: "Spring Boot" },
   { key: "microservices", label: "Microservices" },
-  { key: "kafka", label: "Kafka" },
   { key: "react", label: "React" },
-  { key: "vue", label: "Vue" },
-  { key: "frontend", label: "Frontend" },
 ];
 
 export default function Portfolio() {
@@ -143,6 +94,9 @@ export default function Portfolio() {
       {/* Hero section */}
       <Hero profile={PROFILE}/>
 
+      {/* Introduction */}
+      <Introduction profile={PROFILE}/>
+
       {/* About section */}
       {/* <About profile={PROFILE}/> */}
 
@@ -153,7 +107,7 @@ export default function Portfolio() {
       <Skills/>
 
       {/* Experience */}
-      <Experience/>
+      {/* <Experience/> */}
 
       {/* Education */}
       <Education/>
@@ -163,19 +117,5 @@ export default function Portfolio() {
 
       <Footer profile={PROFILE}/>
     </div>
-  );
-}
-
-
-function Dot() {
-  return <span className="mt-1 size-2.5 shrink-0 rounded-full bg-gradient-to-r from-blue-600 to-purple-600" />;
-}
-
-function DatabaseIcon(props) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-4" {...props}>
-      <path d="M4 6c0-1.657 3.582-3 8-3s8 1.343 8 3-3.582 3-8 3-8-1.343-8-3Z" stroke="currentColor" strokeWidth="1.5"/>
-      <path d="M4 10c0 1.657 3.582 3 8 3s8-1.343 8-3M4 14c0 1.657 3.582 3 8 3s8-1.343 8-3" stroke="currentColor" strokeWidth="1.5"/>
-    </svg>
   );
 }

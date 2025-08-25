@@ -2,61 +2,28 @@ import React, { useMemo, useState, useRef, useEffect } from 'react'
 import { Filter } from 'lucide-react';
 import { motion, AnimatePresence } from "framer-motion";
 import { ProjectCard } from './ProjectCard';
+import { Pagination } from './Pagination';
+import { ProjectModal } from './ProjectModal';
+import { projects } from '../json/data';
 
-const PROJECTS = [
-  {
-    title: "Quiz Builder (Vue + Firebase + AI)",
-    period: "2024",
-    blurb:
-      "Vue SPA that ingests PDFs and generates quizzes and flashcards using Google Gemini API. Rate-limit aware AI calls with Firebase Cloud Functions for long-running jobs.",
-    tags: ["frontend", "vue", "firebase", "ai"],
-    links: { repo: "https://github.com/yourhandle/quiz-builder" },
-  },
-  {
-    title: "AI Email Reply Assistant (Chrome Extension)",
-    period: "2024",
-    blurb:
-      "Chrome extension that integrates with Gmail to generate AI-powered replies using Google Gemini API. Backend powered by Spring Boot for request handling.",
-    tags: ["extension", "spring-boot", "react", "ai"],
-    links: { repo: "https://github.com/yourhandle/ai-email-reply-assistant" },
-  },
-  {
-    title: "Research Assistant (Chrome Extension)",
-    period: "2024",
-    blurb:
-      "Summarizes selected webpage content using Google Gemini API. Built with a minimal popup UI and Spring Boot backend for AI request processing.",
-    tags: ["extension", "spring-boot", "react", "ai"],
-    links: { repo: "https://github.com/yourhandle/research-assistant" },
-  },
-  {
-    title: "E-Signature Platform",
-    period: "2023",
-    blurb:
-      "Multi-user PDF e-signature system with real-time notifications and signature pad input. Supports multiple signatories per document.",
-    tags: ["backend", "nodejs", "mongodb", "react"],
-    links: { repo: "https://github.com/yourhandle/e-signature-platform",live: "https://your-deploy-url.example", },
-    
-  },
-  {
-    title: "Distributed Microservices App",
-    period: "2023",
-    blurb:
-      "Microservices setup with Spring Boot, Eureka Server for service registry, Kafka/RabbitMQ for messaging, MySQL & MongoDB for storage. Designed for scalability.",
-    tags: ["microservices","backend", "spring-boot", "kafka", "rabbitmq", "eureka"],
-    links: { repo: "https://github.com/yourhandle/distributed-microservices-app" },
-  },
-];
+
 
 const Projects = ({ tags }) => {
   const [query, setQuery] = useState("");
   const [activeTag, setActiveTag] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
-  // create a ref for the input
   const inputRef = useRef(null);
+  const projectsSectionRef = useRef(null);
+  const projectsPerPage = 3; // Changed to 3 projects per page
 
-  // focus the input on mount
   useEffect(() => {
-    
+    // Focus the input on component mount
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   }, []);
 
   const Container = ({ children, className = "" }) => (
@@ -64,68 +31,143 @@ const Projects = ({ tags }) => {
   );
 
   const filtered = useMemo(() => {
-    const q = query.toLowerCase();
-    return PROJECTS.filter((p) => {
-      const matchesTag =
-        activeTag === "all" || p.tags.includes(activeTag);
-      const matchesQuery = (p.title + p.blurb + p.tags.join(" "))
-        .toLowerCase()
-        .includes(q);
+    const q = query.toLowerCase().trim();
+    return projects.filter((p) => {
+      const matchesTag = activeTag === "all" || p.tags.includes(activeTag);
+      const matchesQuery = !q || 
+        p.title.toLowerCase().includes(q) || 
+        p.blurb.toLowerCase().includes(q) || 
+        p.tags.some(tag => tag.toLowerCase().includes(q));
+      
       return matchesTag && matchesQuery;
     });
   }, [activeTag, query]);
 
+  const totalPages = Math.ceil(filtered.length / projectsPerPage);
+  const startIndex = (currentPage - 1) * projectsPerPage;
+  const paginatedProjects = filtered.slice(startIndex, startIndex + projectsPerPage);
+
+  useEffect(() => {
+    if (currentPage > totalPages && totalPages > 0) {
+      setCurrentPage(totalPages);
+    } else if (totalPages === 0) {
+      setCurrentPage(1);
+    }
+  }, [totalPages, currentPage]);
+
+  const handleProjectClick = (project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    // Removed the scroll to top behavior
+  };
+
   return (
-    <section id="projects" className="py-16 md:py-24">
+    <section id="projects" className="py-16 md:py-24" ref={projectsSectionRef}>
       <Container>
-        <div className="mb-6 flex items-center justify-between gap-4">
-          <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">Highlighted Projects</h2>
+        <div className="mb-10 text-center">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600"
+          >
+            Highlighted Projects
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="mt-3 text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto"
+          >
+            A collection of my recent work showcasing various technologies and solutions
+          </motion.p>
         </div>
 
-        <div className="mb-6 flex flex-wrap items-center gap-3">
-          <div className="relative flex items-center gap-2 rounded-2xl ring-1 ring-black/10 dark:ring-white/10 bg-white dark:bg-neutral-900 px-3 py-2">
-            <Filter className="size-4"/>
-            <input
-              ref={inputRef} // attach the ref
-              autoFocus // optional, mostly handled by useEffect
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search by title, tag, or description"
-              className="bg-transparent outline-none text-sm w-56"
-            />
-          </div>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="mb-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-4 rounded-2xl bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm border border-neutral-200/50 dark:border-neutral-700/30 shadow-sm"
+        >
+          
+          
           <div className="flex flex-wrap gap-2">
+
+            <div className="relative flex items-center gap-2 flex-1 mr-3">
+              <Filter className="size-5 text-neutral-500" />
+            </div>
+
             {tags.map((t) => (
               <button
                 key={t.key}
-                onClick={() => setActiveTag(t.key)}
-                className={`px-3 py-1.5 text-xs rounded-full border transition ${
+                onClick={() => {
+                  setActiveTag(t.key);
+                  setCurrentPage(1);
+                }}
+                className={`px-4 py-2 text-sm rounded-full border transition-all ${
                   activeTag === t.key
-                    ? "bg-black text-white dark:bg-white dark:text-black"
-                    : "bg-white dark:bg-neutral-900 border-black/10 dark:border-white/10"
+                    ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/30"
+                    : "bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700 hover:shadow-md"
                 }`}
               >
                 {t.label}
               </button>
             ))}
           </div>
-        </div>
-
-        <motion.div layout className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <AnimatePresence>
-            {filtered.map((p) => (
-              <motion.div
-                key={p.title}
-                layout
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-              >
-                <ProjectCard project={p} />
-              </motion.div>
-            ))}
-          </AnimatePresence>
         </motion.div>
+
+        {filtered.length === 0 ? (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-16"
+          >
+            <div className="text-2xl font-semibold text-neutral-600 dark:text-neutral-400 mb-2">
+              No projects found
+            </div>
+            <p className="text-neutral-500">
+              Try adjusting your search or filter criteria
+            </p>
+          </motion.div>
+        ) : (
+          <>
+            <motion.div 
+              layout
+              className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            >
+              <AnimatePresence mode="popLayout">
+                {paginatedProjects.map((p) => (
+                  <ProjectCard 
+                    key={p.title} 
+                    project={p} 
+                    onClick={handleProjectClick}
+                  />
+                ))}
+              </AnimatePresence>
+            </motion.div>
+
+            {totalPages > 1 && (
+              <Pagination 
+                currentPage={currentPage} 
+                totalPages={totalPages} 
+                onPageChange={handlePageChange}
+              />
+            )}
+          </>
+        )}
+
+        <ProjectModal 
+          project={selectedProject} 
+          isOpen={isModalOpen} 
+          onClose={handleCloseModal} 
+        />
       </Container>
     </section>
   );

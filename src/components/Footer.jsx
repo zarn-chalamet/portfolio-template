@@ -50,7 +50,8 @@ const Footer = ({ profile }) => {
                 <Linkedin className="w-5 h-5 text-neutral-400 group-hover:text-white" />
               </a>
               <a
-                href={`mailto:${profile?.email}`}
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${profile?.email}`} 
+                target="_blank"
                 className="p-2.5 rounded-xl bg-neutral-800 hover:bg-blue-600 transition-all duration-300 group"
                 aria-label="Email"
               >
@@ -84,7 +85,8 @@ const Footer = ({ profile }) => {
                 Interested in working together or have questions?
               </p>
               <a 
-                href={`mailto:${profile?.email}`} 
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${profile?.email}`} 
+                target="_blank"
                 className="block text-blue-400 hover:text-blue-300 transition-colors duration-200 text-sm"
               >
                 {profile?.email || 'your.email@example.com'}

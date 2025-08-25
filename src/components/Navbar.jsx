@@ -1,10 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Github, Linkedin, Sun, Moon, Menu, X } from "lucide-react";
 
 const Navbar = ({ profile, dark, setDark }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const navbarRef = useRef(null);
+  const [navbarHeight, setNavbarHeight] = useState(0);
   
+  // Get navbar height for scroll offset
+  useEffect(() => {
+    if (navbarRef.current) {
+      setNavbarHeight(navbarRef.current.offsetHeight);
+    }
+  }, [isMenuOpen]); // Recalculate when menu opens/closes as height may change
+
   // Function to handle scroll and detect active section
   useEffect(() => {
     const handleScroll = () => {
@@ -15,8 +24,9 @@ const Navbar = ({ profile, dark, setDark }) => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
         
-        if (window.scrollY >= sectionTop - 100 && 
-            window.scrollY < sectionTop + sectionHeight - 100) {
+        // Account for navbar height in calculation
+        if (window.scrollY >= sectionTop - navbarHeight - 20 && 
+            window.scrollY < sectionTop + sectionHeight - navbarHeight - 20) {
           currentSection = section.id;
         }
       });
@@ -26,16 +36,33 @@ const Navbar = ({ profile, dark, setDark }) => {
     
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [navbarHeight]); // Re-run when navbarHeight changes
 
   const toggleTheme = () => {
     setDark(!dark);
   };
 
+  // Function to handle smooth scrolling with offset
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+      
+      setActiveSection(id);
+      setIsMenuOpen(false);
+    }
+  };
+
   const navItems = [
     { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
     { id: 'projects', label: 'Projects' },
-    { id: 'experience', label: 'Experience' },
     { id: 'skills', label: 'Skills' },
     { id: 'education', label: 'Education' },
     { id: 'contact', label: 'Contact' }
@@ -46,13 +73,15 @@ const Navbar = ({ profile, dark, setDark }) => {
   );
 
   return (
-    <header className="sticky top-0 z-50 border-b border-black/10 dark:border-white/15 backdrop-blur-lg bg-white/95 dark:bg-neutral-950/95 transition-all duration-300">
+    <header 
+      ref={navbarRef}
+      className="sticky top-0 z-50 border-b border-black/10 dark:border-white/15 backdrop-blur-lg bg-white/95 dark:bg-neutral-950/95 transition-all duration-300"
+    >
       <Container className="flex items-center justify-between py-3">
         {/* Logo/Brand */}
-        <a 
-          href="#home" 
+        <button 
+          onClick={() => scrollToSection('home')}
           className="flex items-center gap-3 group"
-          onClick={() => setActiveSection('home')}
         >
           <div className="size-9 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 transition-all duration-300 group-hover:scale-105 flex items-center justify-center">
             <span className="text-white font-bold text-sm">{profile.initials || 'JD'}</span>
@@ -60,20 +89,19 @@ const Navbar = ({ profile, dark, setDark }) => {
           <span className="font-bold text-lg bg-gradient-to-r from-black to-black/70 dark:from-white dark:to-white/70 bg-clip-text text-transparent transition-all duration-300 group-hover:translate-x-0.5">
             {profile.name}
           </span>
-        </a>
+        </button>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-1">
           {navItems.map((item) => (
-            <a
+            <button
               key={item.id}
-              href={`#${item.id}`}
+              onClick={() => scrollToSection(item.id)}
               className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 relative group ${
                 activeSection === item.id
                   ? 'text-blue-600 dark:text-blue-400 font-semibold'
                   : 'text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white'
               }`}
-              onClick={() => setActiveSection(item.id)}
             >
               {item.label}
               <span 
@@ -83,14 +111,14 @@ const Navbar = ({ profile, dark, setDark }) => {
                     : 'w-0 bg-blue-500 group-hover:w-4/5'
                 }`}
               ></span>
-            </a>
+            </button>
           ))}
         </nav>
 
         {/* Right side actions */}
         <div className="flex items-center gap-2">
           {/* Theme Toggle */}
-          <button
+          {/* <button
             onClick={toggleTheme}
             className="p-2.5 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-200 group"
             aria-label="Toggle theme"
@@ -100,7 +128,7 @@ const Navbar = ({ profile, dark, setDark }) => {
             ) : (
               <Moon className="size-5 text-neutral-700 dark:text-neutral-300 group-hover:rotate-12 transition-transform duration-300" />
             )}
-          </button>
+          </button> */}
 
           {/* Social Links */}
           <a
@@ -143,24 +171,20 @@ const Navbar = ({ profile, dark, setDark }) => {
           <Container className="py-3">
             <nav className="flex flex-col gap-1">
               {navItems.map((item) => (
-                <a
+                <button
                   key={item.id}
-                  href={`#${item.id}`}
+                  onClick={() => scrollToSection(item.id)}
                   className={`px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 flex items-center ${
                     activeSection === item.id
                       ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 font-semibold'
                       : 'text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10'
                   }`}
-                  onClick={() => {
-                    setActiveSection(item.id);
-                    setIsMenuOpen(false);
-                  }}
                 >
                   {item.label}
                   {activeSection === item.id && (
                     <span className="ml-2 w-1.5 h-1.5 rounded-full bg-blue-500"></span>
                   )}
-                </a>
+                </button>
               ))}
               
               <div className="flex items-center gap-2 pt-2 border-t border-gray-200 dark:border-gray-800 mt-2">

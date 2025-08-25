@@ -78,7 +78,7 @@ const Contact = ({ profile }) => {
                 icon={<Mail className="w-4 h-4" />}
                 label="Email"
                 value={profile.email}
-                href={`mailto:${profile.email}`}
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${profile?.email}`}
               />
               
               <ContactInfoItem 
@@ -109,7 +109,8 @@ const Contact = ({ profile }) => {
             <div className="flex flex-col gap-3 mt-2">
               <IconButton 
                 as="a" 
-                href={`mailto:${profile.email}`} 
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${profile?.email}`} 
+                target="_blank"
                 icon={<Mail className="w-4 h-4" />}
               >
                 Send an Email

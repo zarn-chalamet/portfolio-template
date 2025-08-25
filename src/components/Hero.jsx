@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from "framer-motion";
-import { Rocket, ChevronRight, Download, MapPin, Mail, ServerCog, Dot, Sparkles, Code, Cpu, Database, Cloud, Zap } from 'lucide-react';
+import { Rocket, ChevronRight, Download, MapPin, Mail, ServerCog, Dot, Sparkles, Code, Cpu, Database, Cloud, } from 'lucide-react';
 
 const Hero = ({ profile }) => {
 
@@ -53,7 +53,7 @@ const Hero = ({ profile }) => {
   ];
 
   return (
-    <div className="relative">
+    <div className="relative min-h-screen flex items-center"> {/* Added min-h-screen and flex items-center */}
       {/* Background elements - more subtle */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-20 -right-20 w-60 h-60 bg-blue-500/5 rounded-full blur-2xl"></div>
@@ -61,7 +61,7 @@ const Hero = ({ profile }) => {
       </div>
       
       {/* Hero */}
-      <section id="home" className="relative py-16 md:py-20 overflow-hidden">
+      <section id="home" className="relative w-full py-16 md:py-20 overflow-hidden"> {/* Added w-full */}
         <Container>
           <div className="grid lg:grid-cols-2 items-center gap-10">
             <motion.div 
@@ -113,7 +113,8 @@ const Hero = ({ profile }) => {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5 }}
                     className="inline-flex items-center gap-1.5 bg-white/50 dark:bg-neutral-800/50 px-2.5 py-1.5 rounded-md hover:text-blue-600 dark:hover:text-blue-400 transition-colors" 
-                    href={`mailto:${profile.email}`}
+                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=${profile?.email}`} 
+                    target="_blank"
                   >
                     <Mail className="size-3.5 text-purple-500"/> {profile.email}
                   </motion.a>
@@ -170,9 +171,11 @@ const Hero = ({ profile }) => {
                       <div className="mt-1 p-0.5 rounded-full bg-blue-100 dark:bg-blue-900/30">
                         <Dot className="size-4 text-blue-500" />
                       </div>
-                      <span>Resilient REST/GraphQL APIs with Spring Boot</span>
+                      <span className='mt-0.5'>
+                        Resilient REST/GraphQL APIs with Spring Boot
+                      </span>
                     </motion.li>
-                    
+
                     <motion.li 
                       initial={{ opacity: 0, x: 10 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -182,7 +185,9 @@ const Hero = ({ profile }) => {
                       <div className="mt-1 p-0.5 rounded-full bg-purple-100 dark:bg-purple-900/30">
                         <Dot className="size-4 text-purple-500" />
                       </div>
-                      <span>Event-driven microservices with Kafka/RabbitMQ</span>
+                      <span className='mt-0.5'>
+                        Frontend Application with React, Vue
+                      </span>
                     </motion.li>
                     
                     <motion.li 
@@ -194,7 +199,9 @@ const Hero = ({ profile }) => {
                       <div className="mt-1 p-0.5 rounded-full bg-cyan-100 dark:bg-cyan-900/30">
                         <Dot className="size-4 text-cyan-500" />
                       </div>
-                      <span>AI integrations with Google Gemini, Deepseek</span>
+                      <span className='mt-0.5'>
+                        AI integrations with Google Gemini, Deepseek
+                      </span>
                     </motion.li>
                     
                     <motion.li 
@@ -206,19 +213,9 @@ const Hero = ({ profile }) => {
                       <div className="mt-1 p-0.5 rounded-full bg-green-100 dark:bg-green-900/30">
                         <Dot className="size-4 text-green-500" />
                       </div>
-                      <span>Chrome extensions with backend integrations</span>
-                    </motion.li>
-                    
-                    <motion.li 
-                      initial={{ opacity: 0, x: 10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.7 }}
-                      className="flex items-start gap-2 p-2 rounded-md hover:bg-white/50 dark:hover:bg-neutral-800/50 transition-colors"
-                    >
-                      <div className="mt-1 p-0.5 rounded-full bg-yellow-100 dark:bg-yellow-900/30">
-                        <Dot className="size-4 text-yellow-500" />
-                      </div>
-                      <span>Service discovery with Eureka/Spring Cloud</span>
+                      <span className='mt-0.5'>
+                        Chrome extensions with backend integrations
+                      </span>
                     </motion.li>
                   </ul>
                 </div>
