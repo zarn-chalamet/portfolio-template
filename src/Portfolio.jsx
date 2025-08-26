@@ -7,6 +7,7 @@ import Education from "./components/Education";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Introduction from "./components/Introduction";
+import ayl from "./assets/ayl.jpg"
 import { label } from "framer-motion/client";
 
 const Container = ({ children, className = "" }) => (
@@ -39,7 +40,7 @@ const PROFILE = {
   linkedin: "https://www.linkedin.com/in/zarni-tun-3ab45b332",
   resumeUrl: "/resume.pdf", // public/resume.pdf
   initials: "ZT",
-  photo: "src/assets/ayl.jpg"
+  photo: ayl
 };
 
 const TAGS = [

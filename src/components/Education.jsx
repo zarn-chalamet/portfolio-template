@@ -1,6 +1,7 @@
 import React from 'react';
 import { GraduationCap, Award, Calendar, BookOpen, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
+import logo_mfu from "../assets/logo_mfu.jpg"
 
 const Container = ({ children, className = "" }) => (
   <div className={`mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>
@@ -59,7 +60,7 @@ const Education = () => {
                 <div className="flex-shrink-0 flex justify-center md:justify-start">
                   <div className="w-16 h-16 rounded-xl bg-transparent flex items-center justify-center p-1">
                     <img 
-                      src="src/assets/logo_mfu.jpg" 
+                      src={logo_mfu} 
                       alt="Mae Fah Luang University Logo" 
                       className="w-full h-full object-contain rounded-md"
                     />
