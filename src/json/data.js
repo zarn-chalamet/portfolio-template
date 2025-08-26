@@ -5,6 +5,7 @@ import fitness from "../assets/fitness.jpg";
 import research_assistant from "../assets/research-assistant.jpg";
 import stability_ai from "../assets/stability_ai.jpg";
 import url_shorten from "../assets/url_shorten.jpg";
+import doctor_appointment from "../assets/doctor_appointment.jpg";
 export const projects = [
   {
     title: "AI-Powered Email Auto Reply Generator",
@@ -196,6 +197,75 @@ export const projects = [
       "Real-time typing indicators",
       "Chat export and download feature",
       "Dark mode UI",
+    ],
+  },
+  {
+    title: "Doctor Appointment Booking System",
+    period: "2025",
+    blurb:
+      "A MERN stack platform with role-based access for patients, doctors, and admins, supporting OAuth2 authentication, appointment booking, and management.",
+    description:
+      "A role-based doctor appointment management system built with the MERN stack. Patients can register/login (with OAuth2 support), search for doctors, and book/cancel appointments. Doctors can log in, update their profiles, view and manage appointments, and mark them as completed. Admins manage doctor accounts and oversee all appointments. The system ensures secure, seamless scheduling and management with JWT + OAuth2 authentication.",
+    tags: ["mern", "mongodb", "express", "react", "nodejs", "oauth2", "jwt"],
+    features: [
+      "Patient registration and login (with OAuth2)",
+      "Doctor search and appointment booking",
+      "Cancel appointments (patients & doctors)",
+      "Doctors can mark appointments as Done",
+      "Doctors can update profiles",
+      "Admin can create/manage doctors",
+      "Admin can cancel any appointment",
+    ],
+    flows: {
+      patientFlow: [
+        "Patient registers/logs in (OAuth2 available)",
+        "Searches for doctors",
+        "Books an appointment",
+        "Cancels if needed",
+      ],
+      doctorFlow: [
+        "Doctor logs in",
+        "Views scheduled appointments",
+        "Updates profile info",
+        "Cancels or marks appointment as done",
+      ],
+      adminFlow: [
+        "Admin logs in",
+        "Creates or manages doctor accounts",
+        "Cancels problematic appointments",
+      ],
+    },
+    tech: {
+      frontend: ["React.js", "Tailwind CSS", "Context API"],
+      backend: ["Node.js", "Express.js"],
+      database: ["MongoDB"],
+      authentication: ["OAuth2 (Google)", "JWT"],
+    },
+    role: "Full-stack developer (frontend, backend, database integration, authentication, role-based access)",
+    highlights: [
+      "Secure role-based access control",
+      "OAuth2 integration for modern authentication",
+      "Smooth patient-doctor-admin workflows",
+    ],
+    links: {
+      repo: "https://github.com/zarn-chalamet/doctor-appointment-booking",
+      author: "https://github.com/zarn-chalamet",
+    },
+    image: doctor_appointment,
+    screenshots: [
+      "https://github.com/user-attachments/assets/b806fe4c-0bd2-4e67-9ed8-a1261988ec0e",
+      "https://github.com/user-attachments/assets/ff4f2169-3638-4d04-86dd-91769be2ae17",
+      "https://github.com/user-attachments/assets/23669e54-f041-489a-acb4-5afe8f99f69b",
+      "https://github.com/user-attachments/assets/a38e6ccd-8f65-4625-b012-61d0d4a1b4f3",
+      "https://github.com/user-attachments/assets/d4672706-c890-41e7-9115-19b387aafa3c",
+    ],
+    license: "MIT",
+    status: "Active",
+    futureImprovements: [
+      "Appointment reminders via email/SMS",
+      "Online payments",
+      "Google Calendar / Outlook sync",
+      "Doctor availability time slots",
     ],
   },
   {

@@ -50,6 +50,8 @@ const TAGS = [
   { key: "spring-boot", label: "Spring Boot" },
   { key: "microservices", label: "Microservices" },
   { key: "react", label: "React" },
+  { key: "mern", label: "MERN" },
+  { key: "nodejs", label: "Node js" },
 ];
 
 export default function Portfolio() {
