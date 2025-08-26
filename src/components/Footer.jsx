@@ -64,7 +64,7 @@ const Footer = ({ profile }) => {
           <div className="md:ml-auto">
             <h3 className="font-semibold text-lg mb-4 text-white">Navigation</h3>
             <ul className="space-y-3">
-              {['Home', 'Projects', 'Experience', 'Skills', 'Education', 'Contact'].map((item) => (
+              {['Home', 'About', 'Projects', 'Skills', 'Education', 'Contact'].map((item) => (
                 <li key={item}>
                   <a 
                     href={`#${item.toLowerCase()}`} 

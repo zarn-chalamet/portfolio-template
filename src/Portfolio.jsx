@@ -7,7 +7,8 @@ import Education from "./components/Education";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Introduction from "./components/Introduction";
-import ayl from "./assets/ayl.jpg"
+import profile_p from "./assets/profile.png"
+import resume_file from "./assets/resume-zarn.pdf"
 import { label } from "framer-motion/client";
 
 const Container = ({ children, className = "" }) => (
@@ -38,9 +39,9 @@ const PROFILE = {
   email: "zarnn872@gmail.com",
   github: "https://github.com/zarn-chalamet",
   linkedin: "https://www.linkedin.com/in/zarni-tun-3ab45b332",
-  resumeUrl: "/resume.pdf", // public/resume.pdf
+  resumeUrl: resume_file,
   initials: "ZT",
-  photo: ayl
+  photo: profile_p
 };
 
 const TAGS = [
