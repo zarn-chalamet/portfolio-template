@@ -1,3 +1,10 @@
+import chat_bot from "../assets/chat_bot.jpg";
+import email_generator from "../assets/email_generator.jpg";
+import file_share from "../assets/file_share.jpg";
+import fitness from "../assets/fitness.jpg";
+import research_assistant from "../assets/research-assistant.jpg";
+import stability_ai from "../assets/stability_ai.jpg";
+import url_shorten from "../assets/url_shorten.jpg";
 export const projects = [
   {
     title: "AI-Powered Email Auto Reply Generator",
@@ -34,10 +41,10 @@ export const projects = [
       "Time-saving productivity tool",
     ],
     links: {
-      repo: "https://github.com/zarn-chalamet/email-reply-generator",
+      repo: "https://github.com/zarn-chalamet/email-assistant-ai",
       author: "https://github.com/zarn-chalamet",
     },
-    image: "src/assets/email_generator.jpg",
+    image: email_generator,
     screenshots: [
       "https://github.com/user-attachments/assets/ab94910f-814b-40c9-a5ff-26defd536e90",
       "https://github.com/user-attachments/assets/df569c2b-d7f9-4e83-85ba-4a96e806688a",
@@ -95,7 +102,7 @@ export const projects = [
     links: {
       repo: "https://github.com/zarn-chalamet/url_shortener",
     },
-    image: "src/assets/url_shorten.jpg",
+    image: url_shorten,
     screenshots: [
       "https://github.com/user-attachments/assets/f80fb68c-9d6c-4105-aa94-e1a245f4f8a9",
       "https://github.com/user-attachments/assets/2fd436ef-e715-49ea-8150-d05deb7192f8",
@@ -176,7 +183,7 @@ export const projects = [
       repo: "https://github.com/zarn-chalamet/chatbot-deepseek",
       author: "https://github.com/zarn-chalamet",
     },
-    image: "src/assets/chat_bot.jpg",
+    image: chat_bot,
     screenshots: [
       "https://github.com/user-attachments/assets/5afa1fed-dc20-4ee9-a988-1c87b0356b99",
       "https://github.com/user-attachments/assets/3867f9ce-389c-4483-aa4d-b3a1921d767d",
@@ -235,7 +242,7 @@ export const projects = [
       repo: "https://github.com/zarn-chalamet/email-assistant-ai",
       author: "https://github.com/zarn-chalamet",
     },
-    image: "src/assets/research-assistant.jpg",
+    image: research_assistant,
     screenshots: [
       "https://github.com/user-attachments/assets/3e32cffc-71c1-4759-b6aa-757c7bdeb837",
     ],
@@ -308,7 +315,7 @@ export const projects = [
       repo: "https://github.com/zarn-chalamet/fileshare",
       author: "https://github.com/zarn-chalamet",
     },
-    image: "src/assets/file_share.jpg",
+    image: file_share,
     screenshots: [
       "https://github.com/user-attachments/assets/placeholder-fileshare-dashboard.jpg",
       "https://github.com/user-attachments/assets/placeholder-fileshare-upload.jpg",
@@ -375,7 +382,7 @@ export const projects = [
       repo: "https://github.com/zarn-chalamet/gen-ai",
       author: "https://github.com/zarn-chalamet",
     },
-    image: "src/assets/stability_ai.jpg",
+    image: stability_ai,
     screenshots: [
       "https://github.com/user-attachments/assets/a26fd6d9-d3b6-43f2-a4c0-a0a4a3edca45",
       "https://github.com/user-attachments/assets/6baf6695-8f9f-46bb-a3e8-8dc31dd8d56b",
@@ -456,7 +463,7 @@ export const projects = [
       repo: "https://github.com/zarn-chalamet/fitness-ms",
       author: "https://github.com/zarn-chalamet",
     },
-    image: "src/assets/fitness.jpg",
+    image: fitness,
     screenshots: [
       "https://github.com/user-attachments/assets/89dee6a4-9696-4595-b056-dff2ea916c64",
     ],
