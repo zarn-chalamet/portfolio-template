@@ -6,6 +6,8 @@ import research_assistant from "../assets/research-assistant.jpg";
 import stability_ai from "../assets/stability_ai.jpg";
 import url_shorten from "../assets/url_shorten.jpg";
 import doctor_appointment from "../assets/doctor_appointment.jpg";
+import quiz_gen from "../assets/quiz-gen.jpg";
+
 export const projects = [
   {
     title: "AI-Powered Email Auto Reply Generator",
@@ -544,6 +546,81 @@ export const projects = [
       "Real-time activity tracking from wearable devices",
       "Comprehensive analytics dashboard",
       "Multi-language support for AI recommendations",
+    ],
+  },
+  {
+    title: "QuizGenAI – AI-Powered Quiz & Flashcard Platform",
+    period: "2025",
+    blurb:
+      "A full-stack learning platform where users can create quizzes and flashcards manually or generate them from uploaded PDF/DOC files using Google Gemini AI.",
+    description:
+      "QuizGenAI helps students and learners create, study, and share quizzes and flashcards effortlessly. Users can either add questions manually or upload documents (PDF/DOC) and let the system automatically generate quizzes or flashcards based on a chosen quantity. The platform provides a flashcard learning mode, quiz answering with instant scoring, and secure authentication with Clerk. The backend, built on Spring Boot, integrates with Google Gemini API for AI generation and uses PDFBox/Apache POI for document text extraction, while the frontend is a modern React app with a clean, responsive UI.",
+    tags: [
+      "react",
+      "spring-boot",
+      "clerk",
+      "google-gemini",
+      "quiz",
+      "flashcards",
+      "pdf-processing",
+    ],
+    features: [
+      "Manual creation of quizzes and flashcards",
+      "Upload PDF/DOC files to auto-generate quizzes or flashcards",
+      "Set quantity of questions/flashcards to generate",
+      "Flashcard learning mode with flip and mark options",
+      "Quiz answering mode with instant scoring and feedback",
+      "Secure authentication with Clerk",
+      "Responsive UI with React frontend",
+    ],
+    flows: {
+      flashcardFlow: [
+        "User selects manual creation or upload",
+        "If upload: document sent to backend for parsing",
+        "Gemini API generates flashcards",
+        "Flashcards displayed in learning mode with flip/mark options",
+      ],
+      quizFlow: [
+        "User creates quiz manually or uploads file",
+        "Backend extracts text using PDFBox/POI",
+        "Gemini API generates quiz questions",
+        "User answers quiz and receives instant scoring",
+      ],
+    },
+    tech: {
+      frontend: ["React", "TailwindCSS", "Axios"],
+      backend: ["Java 17+", "Spring Boot", "Maven"],
+      authentication: ["Clerk (JWT-based)"],
+      ai: ["Google Gemini API"],
+      documentParsing: ["Apache PDFBox", "Apache POI"],
+    },
+    role: "Full-stack developer (frontend, backend, AI integration, document parsing, and authentication)",
+    highlights: [
+      "AI-powered learning assistant with Google Gemini",
+      "Supports both manual and automated quiz/flashcard creation",
+      "Secure and modern full-stack architecture",
+      "Document-based learning with PDF/DOC parsing",
+    ],
+    links: {
+      repo: "https://github.com/zarn-chalamet/quiz-gen",
+      author: "https://github.com/zarn-chalamet",
+    },
+    image: quiz_gen,
+    screenshots: [
+      "https://github.com/user-attachments/assets/768f299a-193b-4deb-9189-e140a2245116",
+      "https://github.com/user-attachments/assets/29b83be2-194a-4a5f-beb7-db341c969acf",
+      "https://github.com/user-attachments/assets/06d0d717-1d8b-44d3-9c5b-ef15c238beda",
+      "https://github.com/user-attachments/assets/8d79cc99-1d81-48bf-9924-d83b432feae1",
+      "https://github.com/user-attachments/assets/c516810d-cc68-4959-866b-cad3c6e619c8",
+      "https://github.com/user-attachments/assets/d21a4817-9fcd-4acc-bae1-d81b2bb620fa",
+    ],
+    license: "MIT",
+    status: "Active",
+    futureImprovements: [
+      "OCR support for scanned PDFs",
+      "Export quizzes/flashcards to Anki/CSV",
+      "Deck sharing between users",
+      "Support for more question types (true/false, fill-in-the-blank)",
     ],
   },
 ];
