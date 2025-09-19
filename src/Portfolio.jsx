@@ -7,8 +7,8 @@ import Education from "./components/Education";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Introduction from "./components/Introduction";
-import profile_p from "./assets/profile.png"
-import resume_file from "./assets/resume-zarn.pdf"
+import profile_p from "./assets/profile-holland.png"
+import resume_file from "./assets/zarni_tun_resume.pdf"
 import { label } from "framer-motion/client";
 
 const Container = ({ children, className = "" }) => (

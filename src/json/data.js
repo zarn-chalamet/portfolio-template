@@ -7,8 +7,80 @@ import stability_ai from "../assets/stability_ai.jpg";
 import url_shorten from "../assets/url_shorten.jpg";
 import doctor_appointment from "../assets/doctor_appointment.jpg";
 import quiz_gen from "../assets/quiz-gen.jpg";
+import face_recognition from "../assets/face_recognition.jpg";
 
 export const projects = [
+  {
+    title: "Attendance Tracking App (Face Recognition)",
+    period: "2025",
+    blurb:
+      "A full-stack attendance system with face recognition and location verification, ensuring secure clock-ins within 200 meters of office location.",
+    description:
+      "This cross-platform solution combines React frontend, Spring Boot backend, and Python (DeepFace) for face recognition. Employees can clock in/out only within 200 meters of office location with verified facial identity. MySQL ensures persistent storage, JWT secures authentication, and the app is deployed across Vercel (frontend), Railway (backend & DB), and Google Cloud Run (face recognition). Admins can manage and view attendance records via an intuitive dashboard.",
+    tags: [
+      "react",
+      "spring-boot",
+      "python",
+      "deepface",
+      "mySQL",
+      "jwt",
+      "face-recognition",
+      "location-verification",
+      "fullstack",
+    ],
+    features: [
+      "User registration and profile management",
+      "Face recognition powered by DeepFace for attendance validation",
+      "Location verification within 200 meters of office",
+      "Attendance logs and history tracking",
+      "Admin dashboard to manage attendance records",
+      "JWT authentication and secure APIs",
+      "Cross-platform deployment (Vercel, Railway, GCP)",
+    ],
+    flows: {
+      authentication: [
+        "User registers with face image",
+        "User logs in to receive JWT token",
+      ],
+      attendance: [
+        "User submits face image for clock-in",
+        "Backend verifies location (within 200m)",
+        "Face Recognition service validates identity",
+        "Attendance logged in MySQL database",
+      ],
+      adminFlow: ["Admin logs in", "Views and manages all attendance records"],
+    },
+    tech: {
+      frontend: ["React (Vercel)"],
+      backend: ["Spring Boot (Railway)", "JWT Authentication"],
+      ai: ["Python + DeepFace (Google Cloud Run)"],
+      database: ["MySQL (Railway)"],
+    },
+    role: "Full-stack developer (frontend, backend, AI integration, location verification, and deployment)",
+    highlights: [
+      "Face recognition and location verification for secure attendance",
+      "Cross-platform deployment with Vercel, Railway, and GCP",
+      "Admin dashboard for managing attendance records",
+    ],
+    links: {
+      repo: "https://github.com/zarn-chalamet/attendance-tracking",
+      live: "https://attendance-tracking-three.vercel.app",
+      liveBackend: "https://sb-backend-production-120d.up.railway.app",
+      faceRecognitionService:
+        "https://outback-1089597453640.asia-southeast1.run.app",
+      author: "https://github.com/zarn-chalamet",
+    },
+    image: face_recognition,
+    screenshots: [],
+    license: "MIT",
+    status: "Active",
+    futureImprovements: [
+      "Push notifications for reminders",
+      "Real-time analytics dashboard",
+      "Integration with mobile apps",
+      "Enhanced AI recognition for masked faces",
+    ],
+  },
   {
     title: "AI-Powered Email Auto Reply Generator",
     period: "2025",
