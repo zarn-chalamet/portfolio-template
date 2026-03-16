@@ -46,10 +46,10 @@ const Hero = ({ profile }) => {
   );
 
   const techIcons = [
-    { icon: Code, color: "text-blue-500" },
-    { icon: Cpu, color: "text-purple-500" },
+    { icon: ServerCog, color: "text-blue-500" },
     { icon: Database, color: "text-cyan-500" },
     { icon: Cloud, color: "text-green-500" },
+    { icon: Code, color: "text-purple-500" },
   ];
 
   return (
@@ -72,11 +72,14 @@ const Hero = ({ profile }) => {
             >
               <div className="mb-6">
                 <Badge icon={Rocket} className="mb-4">
-                  Open to backend internships
+                  Open to Backend Engineer Roles
                 </Badge>
                 
                 <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-4">
-                  Backend‑focused <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Full‑Stack</span> Developer
+                  Backend Software Engineer
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                    {" "}Java
+                  </span>
                 </h1>
                 
                 <motion.p 
@@ -91,11 +94,17 @@ const Hero = ({ profile }) => {
                 <div className="flex flex-wrap items-center gap-3 mb-6">
                   <Button as="a" href="#projects" variant="primary">
                     <ChevronRight className="size-3.5 group-hover:translate-x-0.5 transition-transform"/> 
-                    View Projects
+                    Explore Projects
                   </Button>
+
                   <Button as="a" href={profile.resumeUrl} download variant="secondary">
                     <Download className="size-3.5"/> 
                     Download CV
+                  </Button>
+
+                  <Button as="a" href="https://github.com/zarn-chalamet" variant="secondary">
+                    <Code className="size-3.5"/> 
+                    GitHub
                   </Button>
                 </div>
                 
@@ -162,62 +171,64 @@ const Hero = ({ profile }) => {
                   </div>
                   
                   <ul className="space-y-2.5 text-sm text-neutral-700 dark:text-neutral-300">
-                    <motion.li 
-                      initial={{ opacity: 0, x: 10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.3 }}
-                      className="flex items-start gap-2 p-2 rounded-md hover:bg-white/50 dark:hover:bg-neutral-800/50 transition-colors"
+
+                    <motion.li
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="flex items-start gap-2 p-2 rounded-md hover:bg-white/50 dark:hover:bg-neutral-800/50 transition-colors"
                     >
-                      <div className="mt-1 p-0.5 rounded-full bg-blue-100 dark:bg-blue-900/30">
-                        <Dot className="size-4 text-blue-500" />
-                      </div>
-                      <span className='mt-0.5'>
-                        Resilient REST/GraphQL APIs with Spring Boot
-                      </span>
+                        <div className="mt-1 p-0.5 rounded-full bg-blue-100 dark:bg-blue-900/30">
+                          <Dot className="size-4 text-blue-500" />
+                        </div>
+                        <span className="mt-0.5">
+                          Building scalable REST APIs using Java and Spring Boot
+                        </span>
                     </motion.li>
 
-                    <motion.li 
+                    <motion.li
                       initial={{ opacity: 0, x: 10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.4 }}
                       className="flex items-start gap-2 p-2 rounded-md hover:bg-white/50 dark:hover:bg-neutral-800/50 transition-colors"
-                    >
-                      <div className="mt-1 p-0.5 rounded-full bg-purple-100 dark:bg-purple-900/30">
-                        <Dot className="size-4 text-purple-500" />
-                      </div>
-                      <span className='mt-0.5'>
-                        Frontend Application with React, Vue
-                      </span>
+                      >
+                        <div className="mt-1 p-0.5 rounded-full bg-purple-100 dark:bg-purple-900/30">
+                          <Dot className="size-4 text-purple-500" />
+                        </div>
+                        <span className="mt-0.5">
+                          Designing backend services and database systems
+                        </span>
                     </motion.li>
-                    
-                    <motion.li 
+
+                    <motion.li
                       initial={{ opacity: 0, x: 10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.5 }}
                       className="flex items-start gap-2 p-2 rounded-md hover:bg-white/50 dark:hover:bg-neutral-800/50 transition-colors"
-                    >
-                      <div className="mt-1 p-0.5 rounded-full bg-cyan-100 dark:bg-cyan-900/30">
-                        <Dot className="size-4 text-cyan-500" />
-                      </div>
-                      <span className='mt-0.5'>
-                        AI integrations with Google Gemini, Deepseek
-                      </span>
+                      >
+                        <div className="mt-1 p-0.5 rounded-full bg-cyan-100 dark:bg-cyan-900/30">
+                          <Dot className="size-4 text-cyan-500" />
+                        </div>
+                        <span className="mt-0.5">
+                          Integrating AI APIs such as Google Gemini and Deepseek
+                        </span>
                     </motion.li>
-                    
-                    <motion.li 
+
+                    <motion.li
                       initial={{ opacity: 0, x: 10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.6 }}
                       className="flex items-start gap-2 p-2 rounded-md hover:bg-white/50 dark:hover:bg-neutral-800/50 transition-colors"
-                    >
-                      <div className="mt-1 p-0.5 rounded-full bg-green-100 dark:bg-green-900/30">
-                        <Dot className="size-4 text-green-500" />
-                      </div>
-                      <span className='mt-0.5'>
-                        Chrome extensions with backend integrations
-                      </span>
+                      >
+                        <div className="mt-1 p-0.5 rounded-full bg-green-100 dark:bg-green-900/30">
+                          <Dot className="size-4 text-green-500" />
+                        </div>
+                        <span className="mt-0.5">
+                          Developing full-stack applications using React and Vue
+                        </span>
                     </motion.li>
-                  </ul>
+
+                    </ul>
                 </div>
               </Card>
               

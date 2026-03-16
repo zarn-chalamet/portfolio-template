@@ -50,24 +50,23 @@ const Introduction = ({ profile }) => {
               className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium mb-4"
             >
               <Sparkles className="size-4 mr-1" />
-              Available for opportunities
+              Open to Backend Engineer Roles
             </motion.div>
             
             <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-              Crafting Digital Excellence
+              About Me
             </h2>
             
             <div className="mb-6">
+
               <p className="text-neutral-700 dark:text-neutral-300 mb-4 leading-relaxed">
-                
-                I’m a Software Engineering student with a strong passion for developing innovative applications that transform ideas into real-world impact. With hands-on expertise in full-stack development — spanning Vue, React, Spring Boot, Node and cloud technologies — I build solutions that are both technically robust and user-friendly.
-
-
+                I am a Software Engineering graduate based in Thailand with experience building backend services and full-stack applications using Java and modern web technologies. During my internship, I worked on developing APIs and web systems while collaborating with engineers to build scalable solutions.
               </p>
-              
+
               <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
-                My work blends engineering excellence with intuitive design, ensuring every product is not only powerful under the hood but also seamless to use. I thrive in collaborative environments and am eager to contribute my skills to forward-thinking teams building the next generation of digital experiences.
+                My primary interest is backend engineering, focusing on building reliable APIs, designing backend services, and working with databases. I enjoy learning about distributed systems, cloud infrastructure, and modern backend architectures.
               </p>
+
             </div>
 
             {/* Tech Interests - More Compact */}
@@ -79,7 +78,7 @@ const Introduction = ({ profile }) => {
                 <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg mb-2">
                   <Code className="size-5 text-blue-600 dark:text-blue-400" />
                 </div>
-                <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">Frontend</span>
+                <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">Backend</span>
               </motion.div>
               
               <motion.div 
@@ -89,7 +88,7 @@ const Introduction = ({ profile }) => {
                 <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg mb-2">
                   <Cpu className="size-5 text-purple-600 dark:text-purple-400" />
                 </div>
-                <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">AI/ML</span>
+                <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">APIs</span>
               </motion.div>
               
               <motion.div 
@@ -99,7 +98,7 @@ const Introduction = ({ profile }) => {
                 <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg mb-2">
                   <Database className="size-5 text-blue-600 dark:text-blue-400" />
                 </div>
-                <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">Backend</span>
+                <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">Cloud</span>
               </motion.div>
               
               <motion.div 
@@ -109,7 +108,7 @@ const Introduction = ({ profile }) => {
                 <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg mb-2">
                   <Cloud className="size-5 text-purple-600 dark:text-purple-400" />
                 </div>
-                <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">Cloud</span>
+                <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">Frontend</span>
               </motion.div>
             </div>
 

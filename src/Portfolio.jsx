@@ -7,6 +7,7 @@ import Education from "./components/Education";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Introduction from "./components/Introduction";
+import Experience from "./components/Experience";
 import profile_p from "./assets/profile-holland.png"
 import resume_file from "./assets/zarni_tun_resume.pdf"
 import { label } from "framer-motion/client";
@@ -32,9 +33,9 @@ const Button = ({ as:As = "button", className = "", children, ...props }) => (
 // --- Data you can edit quickly ---
 const PROFILE = {
   name: "Zarni Tun",
-  role: "Final-year Software Engineering Student",
+  role: "Software Engineering Graduate",
   summary:
-    "Final-year Software Engineering student passionate about full-stack development, AI/ML, and creating intuitive digital solutions. Exploring microservices, cloud, and modern DevOps practices to expand my craft.",
+    "Software Engineering graduate with experience developing backend services and full-stack applications using Java and modern web technologies. Internship experience building APIs and scalable systems. Interested in backend engineering, distributed systems, and cloud infrastructure.",
   location: "Chiang Rai, Thailand",
   email: "zarnn872@gmail.com",
   github: "https://github.com/zarn-chalamet",
@@ -104,14 +105,14 @@ export default function Portfolio() {
       {/* About section */}
       {/* <About profile={PROFILE}/> */}
 
+      {/* Experience */}
+      <Experience/>
+      
       {/* Projects */}
       <Projects tags={TAGS}/>
 
       {/* Skills */}
       <Skills/>
-
-      {/* Experience */}
-      {/* <Experience/> */}
 
       {/* Education */}
       <Education/>
