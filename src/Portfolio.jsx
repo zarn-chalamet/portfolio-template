@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 import Introduction from "./components/Introduction";
 import Experience from "./components/Experience";
 import profile_p from "./assets/profile-holland.png";
-import resume_file from "./assets/Zarni_Tun_Resume.pdf";
+import resume_file from "./assets/ZarniTun_Resume.pdf";
 
 const PROFILE = {
   name: "Zarni Tun",
