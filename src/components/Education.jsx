@@ -49,10 +49,10 @@ const Education = () => {
                   </div>
 
                   <p className="text-neutral-400 text-sm leading-relaxed mb-4">
-                    Completed a comprehensive software engineering curriculum taught entirely in English,
-                    covering software architecture, distributed systems, algorithms, database design,
-                    and modern web development. Graduated with strong hands-on project experience across
-                    Java backend systems, microservices, and AI integrations.
+                    Graduated with a <span className="text-blue-400 font-semibold">3.84/4.00 GPA</span> (First Class Honors equivalent) 
+                    from a rigorous Software Engineering curriculum taught entirely in English. Coursework spanned software architecture, 
+                    distributed systems, algorithms, database design, and modern web development. Actively participated in university 
+                    hackathons and built 10+ hands-on projects across Java backend systems, microservices, and AI integrations.
                   </p>
 
                   <div className="flex flex-wrap gap-2">
