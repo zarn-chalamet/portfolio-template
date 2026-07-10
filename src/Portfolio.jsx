@@ -8,36 +8,19 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Introduction from "./components/Introduction";
 import Experience from "./components/Experience";
-import profile_p from "./assets/profile-holland.png"
-import resume_file from "./assets/zarni_tun_resume.pdf"
-import { label } from "framer-motion/client";
+import profile_p from "./assets/profile-holland.png";
+import resume_file from "./assets/Zarni_Tun_Resume.pdf";
 
-const Container = ({ children, className = "" }) => (
-  <div className={`mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>
-);
-
-const Card = ({ children, className = "" }) => (
-  <div className={`rounded-2xl shadow-sm ring-1 ring-black/5 bg-white dark:bg-neutral-900 ${className}`}>{children}</div>
-);
-
-const Badge = ({ children, className = "" }) => (
-  <span className={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-medium tracking-wide bg-white/70 dark:bg-white/5 border-black/10 dark:border-white/10 ${className}`}>{children}</span>
-);
-
-const Button = ({ as:As = "button", className = "", children, ...props }) => (
-  <As className={`inline-flex items-center gap-2 rounded-2xl px-4 py-2 font-semibold shadow-sm ring-1 ring-inset ring-black/5 bg-black text-white hover:bg-black/90 dark:bg-white dark:text-black dark:hover:bg-white/90 transition ${className}`} {...props}>
-    {children}
-  </As>
-);
-
-// --- Data you can edit quickly ---
 const PROFILE = {
   name: "Zarni Tun",
-  role: "Software Engineering Graduate",
+  role: "Backend Software Engineer",
+  tagline: "Building scalable systems with Java, Spring Boot & AI",
   summary:
-    "Software Engineering graduate with experience developing backend services and full-stack applications using Java and modern web technologies. Internship experience building APIs and scalable systems. Interested in backend engineering, distributed systems, and cloud infrastructure.",
-  location: "Chiang Rai, Thailand",
+    "Software Engineering graduate specialized in Java, Spring Boot, and distributed microservices. I've architected event-driven systems with RabbitMQ, integrated production AI pipelines with Gemini and Whisper, and shipped enterprise APIs during my internship at Be1 Digital. Fluent in English, based in Bangkok — ready to build reliable backend systems for your team.",
+  location: "Bangkok, Thailand",
+  availability: "Open to Full-Time Roles",
   email: "zarnn872@gmail.com",
+  phone: "+66 94 545 8487",
   github: "https://github.com/zarn-chalamet",
   linkedin: "https://www.linkedin.com/in/zarni-tun-3ab45b332",
   resumeUrl: resume_file,
@@ -46,81 +29,32 @@ const PROFILE = {
 };
 
 const TAGS = [
-  { key: "all", label: "All" },
-  { key: "AI", label: "Ai"},
+  { key: "all", label: "All Projects" },
   { key: "spring-boot", label: "Spring Boot" },
   { key: "microservices", label: "Microservices" },
+  { key: "AI", label: "AI Integration" },
   { key: "react", label: "React" },
-  { key: "mern", label: "MERN" },
-  { key: "nodejs", label: "Node js" },
+  { key: "mern", label: "MERN" }
 ];
 
 export default function Portfolio() {
-  const [dark, setDark] = useState(() => {
-    // Check if user has a theme preference in localStorage
-    const savedTheme = localStorage.getItem('theme');
-    // If no saved preference, check system preference
-    if (savedTheme) return savedTheme === 'dark';
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
-  });
-  
-  // Toggle theme function
-  const toggleTheme = () => {
-    setDark(prevDark => {
-      const newDark = !prevDark;
-      // Save preference to localStorage
-      localStorage.setItem('theme', newDark ? 'dark' : 'light');
-      return newDark;
-    });
-  };
+  const [dark, setDark] = useState(true);
 
   useEffect(() => {
-    const root = document.documentElement;
-    if (dark) {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
-    }
-  }, [dark]);
-
-  // Add theme toggle to the Navbar props
-  const navbarProps = {
-    profile: PROFILE, 
-    dark, 
-    toggleTheme  // Changed from setDark to toggleTheme
-  };
+    document.documentElement.classList.add("dark");
+  }, []);
 
   return (
-    <div className="min-h-screen bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 transition-colors duration-300">
-      
-      {/* Nav bar */}
-      <Navbar {...navbarProps} />
-
-      {/* Hero section */}
-      <Hero profile={PROFILE}/>
-
-      {/* Introduction */}
-      <Introduction profile={PROFILE}/>
-
-      {/* About section */}
-      {/* <About profile={PROFILE}/> */}
-
-      {/* Experience */}
-      <Experience/>
-      
-      {/* Projects */}
-      <Projects tags={TAGS}/>
-
-      {/* Skills */}
-      <Skills/>
-
-      {/* Education */}
-      <Education/>
-
-      {/* Contact */}
-      <Contact profile={PROFILE}/>
-
-      <Footer profile={PROFILE}/>
+    <div className="min-h-screen bg-[#0a0a0f] text-neutral-100 antialiased">
+      <Navbar profile={PROFILE} />
+      <Hero profile={PROFILE} />
+      <Introduction profile={PROFILE} />
+      <Experience />
+      <Projects tags={TAGS} />
+      <Skills />
+      <Education />
+      <Contact profile={PROFILE} />
+      <Footer profile={PROFILE} />
     </div>
   );
 }

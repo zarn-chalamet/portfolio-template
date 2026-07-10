@@ -1,10 +1,10 @@
-import { Github, ExternalLink } from 'lucide-react';
+import React from "react";
 import { motion } from "framer-motion";
+import { Github, ExternalLink, ArrowUpRight, Star } from "lucide-react";
 
 export const ProjectCard = ({ project, onClick }) => {
-  // Add safety checks to ensure project data exists
   if (!project) return null;
-  
+
   return (
     <motion.div
       layout
@@ -12,75 +12,77 @@ export const ProjectCard = ({ project, onClick }) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.3 }}
-      className="group relative h-full cursor-pointer"
       onClick={() => onClick(project)}
+      className="group relative rounded-xl border border-white/10 bg-white/[0.02] hover:border-blue-500/50 hover:bg-white/[0.04] transition-all cursor-pointer overflow-hidden"
     >
-      <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur"></div>
-      <div className="relative h-full rounded-2xl bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm border border-neutral-200/50 dark:border-neutral-700/30 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
-        {project.image && (
-          <div className="h-40 overflow-hidden">
-            <img 
-              src={project.image} 
-              alt={project.title}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-          </div>
-        )}
-        <div className="p-5 flex flex-col">
-          <div className="flex items-start justify-between gap-3 mb-4">
-            <div className="flex-1">
-              <h3 className="font-semibold text-lg text-neutral-800 dark:text-neutral-200 leading-tight">{project.title}</h3>
-              <div className="text-xs mt-1.5 text-neutral-500 dark:text-neutral-400">{project.period}</div>
-            </div>
-          </div>
-          
-          <p className="text-sm text-neutral-700 dark:text-neutral-300 mb-4 flex-1">{project.blurb }</p>
-          
-          <div className="mt-auto">
-            {/* Added safety check for tags */}
-            {project.tags && project.tags.length > 0 && (
-              <div className="mb-4 flex flex-wrap gap-1.5">
-                {project.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="px-2.5 py-1 text-xs font-medium rounded-full bg-neutral-100/70 dark:bg-neutral-800/70 text-neutral-700 dark:text-neutral-300 border border-neutral-200/50 dark:border-neutral-700/50"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            )}
-            
-            {/* Added safety check for links */}
-            {(project.links?.repo || project.links?.live) && (
-              <div className="flex gap-3 pt-3 border-t border-neutral-200/50 dark:border-neutral-700/30">
-                {project.links?.repo && (
-                  <a
-                    href={project.links.repo}
-                    target="_blank"
-                    rel="noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-200"
-                  >
-                    <Github className="size-4" />
-                    <span>Code</span>
-                  </a>
-                )}
-                {project.links?.live && (
-                  <a
-                    href={project.links.live}
-                    target="_blank"
-                    rel="noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-200"
-                  >
-                    <ExternalLink className="size-4" />
-                    <span>Live Demo</span>
-                  </a>
-                )}
-              </div>
+      {project.featured && (
+        <div className="absolute top-3 right-3 z-10 flex items-center gap-1 mono text-[10px] px-2 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">
+          <Star className="size-2.5 fill-current" />
+          FEATURED
+        </div>
+      )}
+
+      {project.image && (
+        <div className="h-44 overflow-hidden bg-gradient-to-br from-blue-500/10 to-purple-500/10">
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover opacity-60 group-hover:opacity-90 group-hover:scale-105 transition duration-500"
+          />
+        </div>
+      )}
+
+      <div className="p-6">
+        <div className="flex items-start justify-between mb-3">
+          <div className="flex-1">
+            <h3 className="text-lg font-bold text-white group-hover:text-blue-400 transition">
+              {project.title}
+            </h3>
+            {project.subtitle && (
+              <p className="mono text-xs text-neutral-500 mt-1">{project.subtitle}</p>
             )}
           </div>
+          <ArrowUpRight className="size-5 text-neutral-500 group-hover:text-blue-400 group-hover:-translate-y-1 group-hover:translate-x-1 transition" />
+        </div>
+
+        <p className="text-sm text-neutral-400 leading-relaxed mb-4 line-clamp-3">
+          {project.blurb}
+        </p>
+
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {project.tags.slice(0, 4).map((tag) => (
+            <span
+              key={tag}
+              className="mono text-[10px] px-2 py-1 rounded bg-white/5 text-neutral-400 border border-white/5"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex gap-3 pt-3 border-t border-white/5">
+          {project.links?.repo && (
+            <a
+              href={project.links.repo}
+              target="_blank"
+              rel="noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="text-neutral-400 hover:text-blue-400 transition"
+            >
+              <Github className="size-4" />
+            </a>
+          )}
+          {project.links?.live && (
+            <a
+              href={project.links.live}
+              target="_blank"
+              rel="noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="text-neutral-400 hover:text-blue-400 transition"
+            >
+              <ExternalLink className="size-4" />
+            </a>
+          )}
         </div>
       </div>
     </motion.div>
