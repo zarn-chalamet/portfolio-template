@@ -2,9 +2,52 @@ import fitness from "../assets/fitness.jpg";
 import face_recognition from "../assets/face_recognition.jpg";
 import quiz_gen from "../assets/quiz-gen.jpg";
 import doctor_appointment from "../assets/doctor_appointment.jpg";
-import stability_ai from "../assets/stability_ai.jpg";
+import narratemm from "../assets/narratemm.jpg";
+import moviefinder from "../assets/moviefinder.png";
 
 export const projects = [
+  {
+    title: "MovieFinder",
+    subtitle: "AI-Powered Movie Identifier for Social Media Clips",
+    period: "2025",
+    featured: true,
+    blurb:
+      "Full-stack AI platform that identifies movies from TikTok, YouTube, Instagram, and Facebook clips using Google Gemini's multimodal AI — with confidence scoring, streaming availability, and full support for English, Thai, and Burmese.",
+    description:
+      "MovieFinder solves a real daily frustration: seeing a movie clip on social media and not knowing what movie it is. Users paste any TikTok, YouTube, Instagram, or Facebook link, and the platform uses a smart multi-strategy pipeline to identify the film in under 10 seconds. The system routes videos through different analysis paths based on content type — recap videos get 120-second downloads with audio analysis, scene clips try hashtag and metadata matching first, and Chinese short dramas get redirected to appropriate platforms. The biggest engineering challenge was building an honest AI that admits uncertainty rather than showing wrong answers — I implemented a confidence scoring system (CERTAIN/LIKELY/UNCERTAIN/UNKNOWN) and country-aware TMDB search that correctly identifies Korean K-dramas, Chinese films, and other non-English content that generic search tools get wrong.",
+    tags: ["spring-boot", "react", "AI", "typescript", "java"],
+    features: [
+      "Multi-strategy identification pipeline (hashtag → metadata → vision analysis)",
+      "Recap video detection with 120-second audio + frame analysis",
+      "Country-aware TMDB search for non-English films (Korean, Chinese, Japanese)",
+      "Confidence scoring system with 4 honesty levels",
+      "Full internationalization: English, Thai (ภาษาไทย), Burmese (မြန်မာ)",
+      "Chinese short drama detection with platform redirects (ShortMax, DramaBox)",
+      "Real-time streaming provider lookup via TMDB",
+      "Multiple candidate suggestions when AI is uncertain",
+      "Local watchlist (no signup required)"
+    ],
+    tech: {
+      frontend: ["React 18", "TypeScript", "Vite", "Tailwind CSS 4", "Framer Motion", "Zustand"],
+      backend: ["Java 17", "Spring Boot 3.2", "Spring WebFlux", "Lombok", "Jackson"],
+      ai: ["Google Gemini 2.0 (multimodal)", "TMDB API"],
+      processing: ["yt-dlp", "FFmpeg", "FFprobe", "Jsoup"],
+      caching: ["Caffeine In-memory Cache"]
+    },
+    role: "Sole architect & full-stack developer",
+    highlights: [
+      "Built a multi-strategy AI pipeline that routes content through 5+ different analysis paths",
+      "Solved wrong-country matches with a scoring system (+100 native language, -80 wrong country)",
+      "Designed a confidence system that admits uncertainty — 'I don't know' beats wrong answers",
+      "Full multi-language support with proper Burmese and Thai typography",
+      "Handled edge cases like Chinese short dramas that aren't in traditional movie databases"
+    ],
+    links: {
+      repo: "https://github.com/zarn-chalamet/moviefinder"
+    },
+    image: moviefinder,
+    status: "Active"
+  },
   {
     title: "NarrateMM",
     subtitle: "AI-Powered Burmese Video Recap Generator",
@@ -40,7 +83,7 @@ export const projects = [
     links: {
       repo: "https://github.com/zarn-chalamet/NarrateMM"
     },
-    image: stability_ai,
+    image: narratemm,
     status: "Active"
   },
   {
