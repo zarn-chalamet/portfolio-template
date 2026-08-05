@@ -4,12 +4,65 @@ import quiz_gen from "../assets/quiz-gen.jpg";
 import doctor_appointment from "../assets/doctor_appointment.jpg";
 import narratemm from "../assets/narratemm.jpg";
 import moviefinder from "../assets/moviefinder.png";
+import document_organizer from "../assets/document-organizer.png";
 
 export const projects = [
   {
+    title: "Document Organizer",
+    subtitle: "AI-Powered Document Management with Privacy-First Architecture",
+    period: "2026",
+    featured: true,
+    blurb:
+      "Full-stack platform for managing visas, passports, and important documents. Uses AI for OCR, auto-extracts expiry dates, generates proactive insights, and provides a contextual AI assistant — all while keeping user files in their own Google Drive for full PDPA compliance.",
+    description:
+      "Document Organizer solves a real problem foreigners face: important documents scattered across email, phone photos, and folders with no way to track expiry dates. I architected this as three separate services — a Spring Boot backend, a Python FastAPI AI sidecar, and a React frontend — each deployed independently on Google Cloud Run and Vercel. The biggest architectural decision was PDPA compliance: instead of storing user files on my servers (creating a honeypot for hackers), files stay in each user's own Google Drive, and I only store metadata + AI embeddings + insights. The AI pipeline is multi-stage: Google Vision extracts text (handles stamps, handwriting, English + Thai), Groq's Llama LLM intelligently parses messy OCR to find expiry dates, generates structured JSON insights (summary, next actions, warnings, timeline), and powers a RAG-based chat assistant that answers questions using pgvector semantic search over user documents. Every AI response is categorized as DOC (grounded), NOT FOUND, or GENERAL (with 'verify with official sources' warnings) — because AI transparency matters more than false confidence.",
+    tags: ["spring-boot", "react", "AI", "microservices", "java"],
+    features: [
+      "Google Vision OCR with multi-language support (English + Thai)",
+      "LLM-powered date extraction that handles decorative stamps and messy OCR",
+      "Auto-generated AI insights per document (summary, urgency, timeline, warnings)",
+      "Two AI chat modes: global RAG search + document-scoped context chat",
+      "Response categorization (DOC / NOT FOUND / GENERAL) with confidence badges",
+      "Files stored in user's own Google Drive — never on our servers",
+      "Cascade delete extends to Google Drive (no orphaned data)",
+      "Semantic search via pgvector with user-scoped isolation",
+      "Daily expiry email notifications (30, 14, 7, 3, 1 days before)",
+      "Async background processing for OCR + embeddings + insights",
+      "Resizable chat panel with keyboard shortcuts (Ctrl/Cmd+J)",
+      "Dark-first design system with custom purple accent"
+    ],
+    tech: {
+      backend: ["Java 21", "Spring Boot 3.5", "Spring Security", "JPA", "JWT"],
+      frontend: ["React 19", "Vite 7", "Material-UI v7", "React Router v7"],
+      aiSidecar: ["Python 3.11", "FastAPI", "sentence-transformers", "PyTorch"],
+      database: ["PostgreSQL 16", "pgvector (384-dim embeddings)", "Neon (managed)"],
+      ai: ["Google Cloud Vision API", "Groq API (Llama 3.1)", "RAG architecture"],
+      storage: ["Google Drive API v3"],
+      auth: ["Google OAuth 2.0", "JWT (jjwt)"],
+      deployment: ["Google Cloud Run", "Vercel", "Docker (multi-stage)"],
+      devops: ["Cloud Build (CI/CD)", "Google Secret Manager", "Artifact Registry"]
+    },
+    role: "Sole architect & full-stack developer",
+    highlights: [
+      "Architected 3-service system (Java + Python + React) deployed across 4 platforms",
+      "Designed PDPA-compliant architecture — user files never touch our servers",
+      "Built multi-stage AI pipeline: OCR → LLM extraction → insights → semantic search",
+      "Implemented RAG with pgvector for user-scoped semantic document search",
+      "Created response categorization (DOC/NOTFOUND/GENERAL) for AI transparency",
+      "Set up production CI/CD: git push → Cloud Build → auto-deploy in 5 minutes",
+      "Managed enterprise secrets flow using Google Secret Manager across services"
+    ],
+    links: {
+      repo: "https://github.com/zarn-chalamet/document-organizer",
+      live: "https://document-organizer-bice.vercel.app"
+    },
+    image: document_organizer,
+    status: "Active"
+  },
+  {
     title: "MovieFinder",
     subtitle: "AI-Powered Movie Identifier for Social Media Clips",
-    period: "2025",
+    period: "2026",
     featured: true,
     blurb:
       "Full-stack AI platform that identifies movies from TikTok, YouTube, Instagram, and Facebook clips using Google Gemini's multimodal AI — with confidence scoring, streaming availability, and full support for English, Thai, and Burmese.",
@@ -51,7 +104,7 @@ export const projects = [
   {
     title: "NarrateMM",
     subtitle: "AI-Powered Burmese Video Recap Generator",
-    period: "2025",
+    period: "2026",
     featured: true,
     blurb:
       "Full-stack AI video processing platform that transcribes, summarizes, and generates narrated recaps in Burmese using Whisper, Gemini, and a custom Java rendering engine.",
