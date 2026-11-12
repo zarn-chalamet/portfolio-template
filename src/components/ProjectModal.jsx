@@ -1,30 +1,73 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Github, ExternalLink, Zap, Layers, Award, Users } from "lucide-react";
 
 export const ProjectModal = ({ project, isOpen, onClose }) => {
-  if (!project) return null;
+  // Freeze background scroll WITHOUT touching position/scrollY (no jump on close)
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const html = document.documentElement;
+    const body = document.body;
+    const scrollbarWidth = window.innerWidth - html.clientWidth;
+
+    const prev = {
+      htmlOverflow: html.style.overflow,
+      bodyOverflow: body.style.overflow,
+      bodyPaddingRight: body.style.paddingRight,
+    };
+
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+    // Avoid layout shift when scrollbar disappears
+    if (scrollbarWidth > 0) {
+      body.style.paddingRight = `${scrollbarWidth}px`;
+    }
+
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      html.style.overflow = prev.htmlOverflow;
+      body.style.overflow = prev.bodyOverflow;
+      body.style.paddingRight = prev.bodyPaddingRight;
+      window.removeEventListener("keydown", onKeyDown);
+      // No window.scrollTo() — that was causing top → projects bounce
+    };
+  }, [isOpen]); // do NOT depend on onClose (new fn every render = lock thrashing)
+
+  const stopScrollChain = (e) => {
+    e.stopPropagation();
+  };
 
   return (
     <AnimatePresence>
-      {isOpen && (
+      {isOpen && project && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
           onClick={onClose}
-          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
+          onWheel={stopScrollChain}
+          onTouchMove={stopScrollChain}
+          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-hidden"
+          style={{ overscrollBehavior: "none" }}
         >
           <motion.div
-            initial={{ scale: 0.95, opacity: 0, y: 20 }}
+            role="dialog"
+            aria-modal="true"
+            initial={{ scale: 0.98, opacity: 0, y: 12 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.95, opacity: 0, y: 20 }}
+            exit={{ scale: 0.98, opacity: 0, y: 12 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-5xl h-[85vh] rounded-2xl bg-[#0f0f17] border border-white/10 shadow-2xl shadow-black/50 overflow-hidden flex flex-col"
+            className="relative w-full max-w-5xl h-[85vh] max-h-[85vh] rounded-2xl bg-[#0f0f17] border border-white/10 shadow-2xl shadow-black/50 overflow-hidden flex flex-col"
           >
-            {/* Close button */}
             <button
+              type="button"
               onClick={onClose}
               className="absolute top-4 right-4 z-30 p-2 rounded-full bg-black/70 hover:bg-black/90 backdrop-blur-md text-white transition shadow-lg"
               aria-label="Close"
@@ -32,12 +75,8 @@ export const ProjectModal = ({ project, isOpen, onClose }) => {
               <X className="size-4" />
             </button>
 
-            {/* ============================================
-                FIXED HEADER — Image background + Title
-                (Does NOT scroll)
-            ============================================ */}
+            {/* Header */}
             <div className="relative flex-shrink-0 h-[30vh] overflow-hidden">
-              {/* Background image */}
               {project.image && (
                 <>
                   <img
@@ -45,12 +84,10 @@ export const ProjectModal = ({ project, isOpen, onClose }) => {
                     alt={project.title}
                     className="absolute inset-0 w-full h-full object-cover"
                   />
-                  {/* Dark gradient overlay for text readability */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f17] via-[#0f0f17]/50 to-[#0f0f17]/30" />
                 </>
               )}
-              
-              {/* Title overlaid on image */}
+
               <div className="relative h-full flex flex-col justify-end p-8">
                 <div className="flex items-start justify-between gap-4 mb-2">
                   <h2 className="text-3xl sm:text-4xl font-bold text-white leading-tight drop-shadow-lg">
@@ -75,11 +112,8 @@ export const ProjectModal = ({ project, isOpen, onClose }) => {
               </div>
             </div>
 
-            {/* ============================================
-                SCROLLABLE CONTENT — Only this scrolls
-            ============================================ */}
-            <div className="flex-1 overflow-y-auto px-8 py-6 space-y-8">
-              {/* Overview */}
+            {/* Only this region scrolls */}
+            <div className="flex-1 overflow-y-auto overscroll-contain px-8 py-6 space-y-8">
               <div>
                 <h3 className="mono text-xs text-blue-400 uppercase tracking-wider mb-3">
                   Overview
@@ -89,7 +123,6 @@ export const ProjectModal = ({ project, isOpen, onClose }) => {
                 </p>
               </div>
 
-              {/* Key Achievements */}
               {project.highlights && (
                 <div>
                   <h3 className="mono text-xs text-blue-400 uppercase tracking-wider mb-3 flex items-center gap-2">
@@ -97,7 +130,10 @@ export const ProjectModal = ({ project, isOpen, onClose }) => {
                   </h3>
                   <ul className="space-y-2">
                     {project.highlights.map((h, i) => (
-                      <li key={i} className="flex gap-3 text-neutral-300 text-sm leading-relaxed">
+                      <li
+                        key={i}
+                        className="flex gap-3 text-neutral-300 text-sm leading-relaxed"
+                      >
                         <span className="text-emerald-400 flex-shrink-0 mt-0.5">✓</span>
                         <span>{h}</span>
                       </li>
@@ -106,7 +142,6 @@ export const ProjectModal = ({ project, isOpen, onClose }) => {
                 </div>
               )}
 
-              {/* Features */}
               {project.features && (
                 <div>
                   <h3 className="mono text-xs text-blue-400 uppercase tracking-wider mb-3 flex items-center gap-2">
@@ -123,7 +158,6 @@ export const ProjectModal = ({ project, isOpen, onClose }) => {
                 </div>
               )}
 
-              {/* Tech Stack */}
               {project.tech && (
                 <div>
                   <h3 className="mono text-xs text-blue-400 uppercase tracking-wider mb-3 flex items-center gap-2">
@@ -151,7 +185,6 @@ export const ProjectModal = ({ project, isOpen, onClose }) => {
                 </div>
               )}
 
-              {/* Role */}
               {project.role && (
                 <div>
                   <h3 className="mono text-xs text-blue-400 uppercase tracking-wider mb-3 flex items-center gap-2">
@@ -162,9 +195,6 @@ export const ProjectModal = ({ project, isOpen, onClose }) => {
               )}
             </div>
 
-            {/* ============================================
-                FIXED FOOTER
-            ============================================ */}
             <div className="flex-shrink-0 p-6 border-t border-white/10 flex gap-3 bg-[#0f0f17]">
               {project.links?.repo && (
                 <a
