@@ -38,8 +38,8 @@ const Education = () => {
                         Mae Fah Luang University — International Program
                       </p>
                     </div>
-                    <span className="mono text-xs text-neutral-500 whitespace-nowrap flex items-center gap-1">
-                      <Calendar className="size-3" /> Graduated 2026
+                    <span className="mono text-xs text-neutral-500 whitespace-nowrap flex items-center gap-1 bg-white/5 px-3 py-1.5 rounded-full border border-white/10">
+                      <Calendar className="size-3" /> July 2026 · GPA 3.84
                     </span>
                   </div>
 
@@ -49,10 +49,10 @@ const Education = () => {
                   </div>
 
                   <p className="text-neutral-400 text-sm leading-relaxed mb-4">
-                    Graduated with a <span className="text-blue-400 font-semibold">3.84/4.00 GPA</span> (First Class Honors equivalent) 
-                    from a rigorous Software Engineering curriculum taught entirely in English. Coursework spanned software architecture, 
-                    distributed systems, algorithms, database design, and modern web development. Actively participated in university 
-                    hackathons and built 10+ hands-on projects across Java backend systems, microservices, and AI integrations.
+                    Entire four-year degree program conducted <span className="text-white font-semibold">100% in English</span>. 
+                    Graduated with a <span className="text-blue-400 font-semibold">3.84/4.00 GPA</span>. 
+                    Coursework spanned software architecture, distributed systems, algorithms, database design, and modern web development. 
+                    Built 10+ hands-on projects across Java backend systems, microservices, and AI integrations.
                   </p>
 
                   <div className="flex flex-wrap gap-2">

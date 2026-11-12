@@ -8,32 +8,31 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Introduction from "./components/Introduction";
 import Experience from "./components/Experience";
-import profile_p from "./assets/profile-holland.png";
 import resume_file from "./assets/Zarni_Tun_Fullstack_Java_Developer.pdf";
 
 const PROFILE = {
   name: "Zarni Tun",
-  role: "Backend Software Engineer",
-  tagline: "Building scalable systems with Java, Spring Boot & AI",
+  role: "Software Engineer · Java & Full-Stack",
+  tagline: "Spring Boot APIs, React/Angular UIs, and production-ready systems",
   summary:
-    "Software Engineering graduate specialized in Java, Spring Boot, and distributed microservices. I've architected event-driven systems with RabbitMQ, integrated production AI pipelines with Gemini and Whisper, and shipped enterprise APIs during my internship at Be1 Digital. Fluent in English, based in Bangkok — ready to build reliable backend systems for your team.",
+    "Software Engineering graduate (GPA 3.84, July 2026). Java Spring Boot, secure REST APIs, React/Angular. Production work at Be1 Digital; built SlipCheck (payments, AES-256-GCM, Telegram/LINE). Bangkok — available immediately.",
   location: "Bangkok, Thailand",
-  availability: "Open to Full-Time Roles",
+  availability: "Available immediately",
   email: "zarnn872@gmail.com",
   phone: "+66 94 545 8487",
   github: "https://github.com/zarn-chalamet",
   linkedin: "https://www.linkedin.com/in/zarni-tun-3ab45b332",
   resumeUrl: resume_file,
   initials: "ZT",
-  photo: profile_p
+  visaNote: "Non-Ed Plus — eligible for direct Non-B transition"
 };
 
 const TAGS = [
   { key: "all", label: "All Projects" },
   { key: "spring-boot", label: "Spring Boot" },
+  { key: "react", label: "React / Angular" },
   { key: "microservices", label: "Microservices" },
   { key: "AI", label: "AI Integration" },
-  { key: "react", label: "React" },
   { key: "mern", label: "MERN" }
 ];
 

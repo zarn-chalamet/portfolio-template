@@ -5,14 +5,18 @@ import { ExternalLink } from "lucide-react";
 
 const Experience = () => {
   const bullets = [
-    "Developed and shipped RESTful APIs using Java and Spring Boot for an enterprise-grade government project serving thousands of users.",
-    "Optimized complex SQL queries and refactored database schemas, improving critical query response times.",
-    "Integrated Angular frontend components with backend services, ensuring smooth end-to-end data flow across the application.",
-    "Debugged and resolved cross-stack issues spanning frontend, backend, and database layers.",
-    "Collaborated with senior engineers using Git-based workflows, code reviews, and Agile ceremonies."
+    "Designed and shipped 15+ secure RESTful API endpoints with Java, Spring Boot, and Spring Security in a live production government enterprise codebase.",
+    "Built Angular + TypeScript UI components (forms, validation, services) wired to Spring Boot APIs, delivered inside Agile sprint cycles.",
+    "Implemented JWT and OAuth 2.0 authorization flows for session and role-based access control across frontend and backend.",
+    "Diagnosed and resolved 20+ production defects via systematic log analysis, root-cause debugging, and regression checks on Linux.",
+    "Optimized PostgreSQL queries and indexes, achieving a ~35% reduction in data retrieval latency on critical paths.",
+    "Supported CI/CD, application installs, and deployment maintenance; collaborated through Git reviews and Scrum ceremonies."
   ];
 
-  const stack = ["Java", "Spring Boot", "Angular", "SQL", "REST API", "Git"];
+  const stack = [
+    "Java", "Spring Boot", "Angular", "TypeScript", "PostgreSQL", 
+    "JWT", "OAuth 2.0", "REST", "Git", "CI/CD"
+  ];
 
   return (
     <section
@@ -33,6 +37,7 @@ const Experience = () => {
             </h2>
             <div className="h-px flex-1 bg-white/10"></div>
           </div>
+          
           <div className="max-w-4xl mx-auto">
             <div className="relative pl-8 border-l-2 border-blue-500/30">
               <div className="absolute -left-3 top-0 w-6 h-6 rounded-full bg-blue-500 border-4 border-[#0a0a0f] shadow-lg shadow-blue-500/50"></div>
@@ -51,14 +56,14 @@ const Experience = () => {
                         href="https://be1digital.co.th/me/"
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 text-sm font-medium"
+                        className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 text-sm font-medium mt-1"
                       >
                         Be1 Digital Co., Ltd.
                         <ExternalLink className="size-3" />
                       </a>
                     </div>
                   </div>
-                  <span className="mono text-xs text-neutral-500 whitespace-nowrap">
+                  <span className="mono text-xs text-neutral-500 whitespace-nowrap bg-white/5 px-3 py-1.5 rounded-full border border-white/10">
                     Jan 2026 — May 2026
                   </span>
                 </div>
@@ -72,7 +77,7 @@ const Experience = () => {
                   ))}
                 </ul>
 
-                <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+                <div className="flex flex-wrap gap-2 pt-5 border-t border-white/5">
                   {stack.map((tech) => (
                     <span
                       key={tech}

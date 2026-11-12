@@ -1,80 +1,101 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Code2, Server, Zap } from "lucide-react";
 
-const stats = [
-  { icon: Server, label: "Backend Focus", value: "Java + Spring Boot" },
-  { icon: Code2, label: "Architecture", value: "Microservices + REST" },
-  { icon: Zap, label: "Specialty", value: "AI Integration" }
-];
-
-const Introduction = ({ profile }) => {
+const Introduction = () => {
   return (
     <section
       id="about"
-      className="py-24 md:py-32 relative border-t border-white/5"
+      className="py-20 md:py-28 relative border-t border-white/5"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="grid lg:grid-cols-3 gap-12"
+          transition={{ duration: 0.5 }}
         >
-          <div className="lg:col-span-2">
-            <div className="flex items-center gap-4 mb-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-white flex items-center gap-3">
-                <span className="mono text-blue-400 text-2xl">01.</span>
-                About Me
-              </h2>
-              <div className="h-px flex-1 bg-white/10"></div>
-            </div>
-
-            <div className="space-y-5 text-neutral-400 text-base md:text-lg leading-relaxed">
-              <p>
-                Hello! I'm <span className="text-white font-semibold">Zarni Tun</span>, a Software Engineering graduate from{" "}
-                <span className="text-blue-400">Mae Fah Luang University's International Program</span> in Thailand.
-                My passion lies in engineering <span className="text-white">reliable backend systems</span> that solve real problems.
-              </p>
-              <p>
-                My journey started with curiosity about how large-scale applications work under the hood.
-                Today, I architect{" "}
-                <span className="text-white">event-driven microservices with Spring Cloud</span>, integrate cutting-edge{" "}
-                <span className="text-white">AI pipelines using Gemini and Whisper</span>, and solve deep engineering
-                challenges like rendering complex Myanmar Unicode subtitles inside video processing pipelines.
-              </p>
-              <p>
-                During my internship at <span className="text-blue-400">Be1 Digital</span>, I shipped
-                production-grade Spring Boot APIs and Angular integrations for a government enterprise system —
-                gaining real experience with SQL optimization, secure authentication, and enterprise-grade Git workflows.
-              </p>
-              <p>
-                I'm currently based in Bangkok and{" "}
-                <span className="text-emerald-400 font-semibold">actively seeking backend or full-stack roles</span>{" "}
-                where I can contribute meaningful engineering work to a strong team.
-              </p>
-            </div>
+          {/* Section Header */}
+          <div className="flex items-center gap-4 mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-white flex items-center gap-3">
+              <span className="mono text-blue-400 text-lg md:text-xl">01.</span>
+              About Me
+            </h2>
+            <div className="h-px flex-1 bg-white/10" />
           </div>
 
-          <div className="space-y-4">
-            {stats.map((stat, idx) => {
-              const Icon = stat.icon;
-              return (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="p-6 rounded-xl border border-white/10 bg-white/[0.02] hover:border-blue-500/50 transition group"
-                >
-                  <Icon className="size-6 text-blue-400 mb-3 group-hover:scale-110 transition" />
-                  <p className="mono text-xs text-neutral-500 mb-1">{stat.label}</p>
-                  <p className="text-white font-semibold">{stat.value}</p>
-                </motion.div>
-              );
-            })}
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            
+            {/* LEFT — Narrative Copy (7 cols) */}
+            <div className="lg:col-span-7 space-y-4 text-neutral-400 text-sm md:text-base leading-relaxed">
+              <p>
+                Software Engineering graduate from{" "}
+                <span className="text-blue-400">
+                  Mae Fah Luang University (International Program)
+                </span>{" "}
+                — four-year degree conducted entirely in English, graduating{" "}
+                <span className="text-white">July 2026</span>. I specialize in{" "}
+                <span className="text-white">Java Spring Boot</span> backends and{" "}
+                <span className="text-white">React / Angular</span> frontends.
+              </p>
+              
+              <p>
+                I focus on building resilient backend architecture:{" "}
+                <span className="text-white">secure REST APIs (JWT, OAuth 2.0, AES-256-GCM)</span>, 
+                database query optimization, and production-grade third-party integrations — 
+                from EasySlip payment verification and multi-channel bots (Telegram/LINE) to AI pipelines (Gemini, Whisper).
+              </p>
+
+              <p>
+                During my internship at <span className="text-blue-400">Be1 Digital</span>, I delivered{" "}
+                <span className="text-white">15+ REST endpoints</span>, developed Angular UI components, 
+                resolved 20+ defects, and achieved a ~35% database query speedup in Agile sprints.
+              </p>
+            </div>
+
+            {/* RIGHT — Single Minimalist Metrics Card (5 cols) */}
+            <div className="lg:col-span-5">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 space-y-6">
+                
+                {/* Metric 1 */}
+                <div>
+                  <span className="mono text-[10px] text-blue-400 uppercase tracking-widest block mb-1">
+                    Academic Rank
+                  </span>
+                  <p className="text-2xl font-bold text-white">3.84 / 4.00 GPA</p>
+                  <p className="text-xs text-neutral-400 mt-1">
+                    B.Eng. Software Engineering (English Medium)
+                  </p>
+                </div>
+
+                <div className="h-px bg-white/5" />
+
+                {/* Metric 2 */}
+                <div>
+                  <span className="mono text-[10px] text-blue-400 uppercase tracking-widest block mb-1">
+                    Production Internship
+                  </span>
+                  <p className="text-2xl font-bold text-white">15+ APIs Shipped</p>
+                  <p className="text-xs text-neutral-400 mt-1">
+                    Be1 Digital · ~35% PostgreSQL latency reduction
+                  </p>
+                </div>
+
+                <div className="h-px bg-white/5" />
+
+                {/* Metric 3 */}
+                <div>
+                  <span className="mono text-[10px] text-emerald-400 uppercase tracking-widest block mb-1">
+                    Work Authorization
+                  </span>
+                  <p className="text-sm font-semibold text-emerald-300">Available Immediately</p>
+                  <p className="text-xs text-neutral-400 mt-1">
+                    Non-Ed Plus → Direct Non-B Work Permit transition
+                  </p>
+                </div>
+
+              </div>
+            </div>
+
           </div>
         </motion.div>
       </div>

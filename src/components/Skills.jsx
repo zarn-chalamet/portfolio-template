@@ -3,36 +3,36 @@ import { motion } from "framer-motion";
 
 const SKILLS = [
   {
-    category: "Backend & Frameworks",
-    items: ["Java", "Spring Boot", "Spring Cloud", "Spring Security", "Node.js", "Express.js"]
+    category: "Languages",
+    items: ["Java", "TypeScript", "JavaScript", "Python", "SQL"]
   },
   {
-    category: "Architecture & Systems",
-    items: ["Microservices", "REST APIs", "Event-Driven Design", "API Gateway", "Service Discovery"]
-  },
-  {
-    category: "Messaging & Auth",
-    items: ["RabbitMQ", "Keycloak", "JWT", "OAuth2 / OIDC"]
-  },
-  {
-    category: "Databases",
-    items: ["MySQL", "PostgreSQL", "MongoDB"]
-  },
-  {
-    category: "AI & Integration",
-    items: ["Google Gemini API", "Groq Whisper", "DeepFace", "FFmpeg", "Apache PDFBox"]
+    category: "Backend",
+    items: ["Spring Boot", "Spring Security", "Spring Data JPA", "Hibernate", "Maven", "Node.js", "RabbitMQ"]
   },
   {
     category: "Frontend",
-    items: ["React", "TypeScript", "Angular", "Vue.js", "Tailwind CSS"]
+    items: ["React", "Angular", "TypeScript", "Vite", "Tailwind CSS"]
   },
   {
-    category: "Cloud & DevOps",
-    items: ["Docker", "Google Cloud Run", "Railway", "Vercel", "Firebase", "Git"]
+    category: "Data",
+    items: ["PostgreSQL", "MySQL", "MongoDB", "Flyway", "Query Optimisation"]
   },
   {
-    category: "Tools",
-    items: ["Postman", "IntelliJ IDEA", "VS Code", "Linux CLI"]
+    category: "Security",
+    items: ["JWT", "OAuth 2.0", "AES-256-GCM", "BCrypt", "Rate Limiting", "PDPA Design"]
+  },
+  {
+    category: "Integrations",
+    items: ["EasySlip v2", "Telegram Bot API", "LINE Messaging API", "Gemini", "Groq Whisper", "ZXing"]
+  },
+  {
+    category: "DevOps & Cloud",
+    items: ["Docker", "Docker Compose", "GCP", "GitHub Actions", "CI/CD", "Git"]
+  },
+  {
+    category: "Workflow & AI",
+    items: ["Agile/Scrum", "Code Review", "Claude Code", "GitHub Copilot", "Cursor"]
   }
 ];
 
@@ -55,7 +55,8 @@ const Skills = () => {
           </div>
 
           <p className="text-neutral-400 mb-12 max-w-2xl">
-            The technologies and tools I use to design, build, and ship reliable software systems.
+            A full-stack arsenal heavily focused on secure Spring Boot architecture, 
+            modern JavaScript frameworks, and containerized deployments.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -75,7 +76,7 @@ const Skills = () => {
                   {skill.items.map((item) => (
                     <span
                       key={item}
-                      className="mono text-xs px-2 py-1 rounded bg-white/5 text-neutral-300 border border-white/5 hover:border-blue-500/30 hover:text-blue-300 transition"
+                      className="mono text-xs px-2.5 py-1 rounded bg-white/5 text-neutral-300 border border-white/5 hover:border-blue-500/30 hover:text-blue-300 transition"
                     >
                       {item}
                     </span>
