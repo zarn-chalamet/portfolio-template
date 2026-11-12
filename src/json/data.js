@@ -3,10 +3,93 @@ import face_recognition from "../assets/face_recognition.jpg";
 import quiz_gen from "../assets/quiz-gen.jpg";
 import doctor_appointment from "../assets/doctor_appointment.jpg";
 import narratemm from "../assets/narratemm.jpg";
-import moviefinder from "../assets/moviefinder.png";
-import document_organizer from "../assets/document-organizer.png";
+import moviefinder from "../assets/movie-finder.jpg";
+import document_organizer from "../assets/document-org.jpg";
+import slip_check from "../assets/slip-check.jpg";
+import mobile_legends_live_hub from "../assets/mobile-legends-live-hub.jpg";
 
 export const projects = [
+  {
+    title: "SlipCheck",
+    subtitle: "Enterprise Slip Verification & Bot Platform",
+    period: "2026",
+    featured: true,
+    blurb:
+      "High-performance payment verification SaaS for Thai online sellers. Features a headless React UI, JWT security, real-time bot integrations (Telegram/LINE), and zero-disk-storage processing for maximum data privacy.",
+    description:
+      "SlipCheck is a B2B SaaS platform designed to eliminate payment fraud for Thai online merchants. I architected the backend using Spring Boot with strict financial data handling (BigDecimal precision, AES-256-GCM encryption for bank accounts, and strictly in-memory slip processing). It integrates with the EasySlip v2 API for real-time ITMX bank verification, with a custom local EMVCo scanner fallback. To ensure merchants never miss a payment, I built proactive multi-channel bots that push rich, multi-lingual receipts (English, Thai, Burmese) directly to Telegram and LINE. The frontend is a high-end headless React application featuring split-pane modals, glassmorphism tokens, and live QR deep-linking for seamless chat integration.",
+    tags: ["spring-boot", "react", "microservices", "java"],
+    features: [
+      "Real-time Thai bank slip verification via EasySlip v2",
+      "Proactive multi-channel bots (Telegram & LINE via ngrok)",
+      "Secure financial handling (AES-256-GCM encryption)",
+      "Zero-disk-storage image processing (strictly in-memory)",
+      "Live QR deep-linking for instant channel pairing",
+      "Modern headless UI with split-pane modals",
+      "Full i18n support (English, Thai, Burmese)"
+    ],
+    tech: {
+      backend: ["Java 21", "Spring Boot 3", "Spring Security (JWT)", "Bucket4j"],
+      frontend: ["React", "Tailwind CSS", "Framer Motion", "Headless UI"],
+      integrations: ["EasySlip v2 API", "Telegram API", "LINE Messaging API"],
+      security: ["AES-256-GCM Encryption", "In-memory processing"]
+    },
+    role: "Lead Architect & Full-Stack Developer",
+    highlights: [
+      "Architected zero-disk-storage slip processing complying with strict data privacy",
+      "Implemented secure live-polling for seamless bot channel linking",
+      "Built a robust notification router handling Telegram and LINE push messages",
+      "Designed a high-end SaaS frontend moving away from native elements"
+    ],
+    links: {
+      repo: "https://github.com/zarn-chalamet/slip-check",
+    },
+    image: slip_check,
+    status: "Active"
+  },
+  {
+    title: "MLBB Live Hub",
+    subtitle: "Live Esports Hub for Mobile Legends: Bang Bang",
+    period: "2026",
+    featured: true,
+    blurb:
+      "Fan-first esports platform covering major regional and global MLBB leagues (MPL, MDL, MSL, MSC, M Series). Features live scores, brackets, standings, power rankings, streams, and AI-assisted news pipelines powered by Gemini 3.5 Flash Lite and GPT-OSS 120B.",
+    description:
+      "MLBB Live Hub is a full-stack esports data product built because Moonton has no public API for competitive Mobile Legends. I designed a Spring Boot + PostgreSQL backend that ingests tournament data from Liquipedia under CC BY-SA 3.0, with Flyway migrations, fixedDelay schedulers, and a global LP_BUSY guard to prevent rate-limit bans. The React/TypeScript frontend uses React Query with a 30s refetch interval instead of WebSockets — simple, reliable live updates. AI is sandboxed on purpose: Gemini 3.5 Flash Lite with Google Search grounding drafts news at temperature 0.2, an external openai/gpt-oss-120b model powers the Content Studio, and nothing auto-publishes — every article stays DRAFT until an admin approves it. Coverage is massive: MPL (ID, PH, MY, KH), MSL (MM, TH), MDL (ID, PH), MAL MY, and global tier-1 events like MSC and the M Series.",
+    tags: ["spring-boot", "react", "AI", "java"],
+    features: [
+      "Live coverage for MPL (ID, PH, MY, KH), MSL (MM, TH), MDL (ID, PH), MAL MY, MSC, and M Series",
+      "Liquipedia wikitext sync with fixedDelay jobs + AtomicBoolean LP_BUSY overlap guard",
+      "Match game draft parsing from {{Map}} blocks (bans, picks, duration, winner)",
+      "React Query polling every 30s — live UI without WebSocket complexity",
+      "AI news drafts via Gemini 3.5 Flash Lite + Google Search grounding (temp 0.2, daily quota)",
+      "Content Studio brainstorm/finalize via openai/gpt-oss-120b — human review required",
+      "Admin panel: match pinning, stream manager, AI review queue, emergency sync, sync log",
+      "YouTube / Facebook iframe / TikTok stream attachment for LIVE matches",
+      "On-disk hero icons, team logos, and news covers (no binary blobs in Postgres)"
+    ],
+    tech: {
+      backend: ["Java 17", "Spring Boot 3.2", "Lombok", "Flyway"],
+      frontend: ["React 18", "TypeScript", "Vite", "Tailwind CSS 4", "React Query"],
+      database: ["PostgreSQL 16"],
+      ai: ["Gemini 3.5 Flash Lite", "openai/gpt-oss-120b"],
+      data: ["Liquipedia MLBB Wiki (CC BY-SA 3.0)", "YouTube Data API v3"],
+      devops: ["Docker Compose", "Maven Wrapper"]
+    },
+    role: "Sole architect & full-stack developer",
+    highlights: [
+      "Built a production-safe Liquipedia ingestion layer (fixedDelay + LP_BUSY) to avoid GOAWAY bans",
+      "Parsed competitive drafts from raw {{Map}} wikitext into structured match_games / drafts tables",
+      "Designed AI content flow that never auto-publishes — quota tracked in DB, review queue mandatory",
+      "Chose 30s React Query polling over WebSockets for simpler, resilient live scores",
+      "Scaled data tracking across 11+ global and regional leagues simultaneously"
+    ],
+    links: {
+      repo: "https://github.com/zarn-chalamet/mlbb-live-hub"
+    },
+    image: mobile_legends_live_hub,
+    status: "Active"
+  },
   {
     title: "Document Organizer",
     subtitle: "AI-Powered Document Management with Privacy-First Architecture",
